@@ -9,11 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06bae3bd-534b-409d-8110-c196efef4598" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataMiningSpotifyTop.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Properties/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +69,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606156394305</updated>
-      <workItem from="1606156407052" duration="360000" />
+      <workItem from="1606156407052" duration="981000" />
     </task>
     <servers />
   </component>
