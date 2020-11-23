@@ -7,6 +7,7 @@ namespace DataMiningSpotifyTop
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, world!");
+            Console.WriteLine("Test!");
         }
     }
 }
