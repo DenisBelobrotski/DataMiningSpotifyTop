@@ -1,0 +1,3 @@
+[submodule "ThirdParty/CsvSerializer"]
+	path = ThirdParty/CsvSerializer
+	url = https://github.com/DenisBelobrotski/CsvSerializer.git
