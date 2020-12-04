@@ -8,7 +8,8 @@ namespace DataMiningSpotifyTop.Source
     {
         #region Fields
 
-        [DataMember(Name = "id", Order = 0)] public string Id { get; set; }
+        [DataMember(Name = "id", Order = 0)] 
+        public string Id { get; set; }
 
         [DataMember(Name = "title", Order = 1)]
         public string Title { get; set; }
@@ -19,29 +20,38 @@ namespace DataMiningSpotifyTop.Source
         [DataMember(Name = "top genre", Order = 3)]
         public string Genre { get; set; }
 
-        [DataMember(Name = "year", Order = 4)] public int Year { get; set; }
+        [DataMember(Name = "year", Order = 4)] 
+        public int Year { get; set; }
 
-        [DataMember(Name = "bpm", Order = 5)] public int BeatsPerMinute { get; set; }
+        [DataMember(Name = "bpm", Order = 5)] 
+        public double BeatsPerMinute { get; set; }
 
-        [DataMember(Name = "nrgy", Order = 6)] public int Energy { get; set; }
+        [DataMember(Name = "nrgy", Order = 6)] 
+        public double Energy { get; set; }
 
-        [DataMember(Name = "dnce", Order = 7)] public int Danceability { get; set; }
+        [DataMember(Name = "dnce", Order = 7)] 
+        public double Danceability { get; set; }
 
-        [DataMember(Name = "dB", Order = 8)] public int Loudness { get; set; }
+        [DataMember(Name = "dB", Order = 8)] 
+        public double Loudness { get; set; }
 
-        [DataMember(Name = "live", Order = 9)] public int Liveness { get; set; }
+        [DataMember(Name = "live", Order = 9)] 
+        public double Liveness { get; set; }
 
-        [DataMember(Name = "val", Order = 10)] public int Valence { get; set; }
+        [DataMember(Name = "val", Order = 10)] 
+        public double Valence { get; set; }
 
-        [DataMember(Name = "dur", Order = 11)] public int Duration { get; set; }
+        [DataMember(Name = "dur", Order = 11)] 
+        public double Duration { get; set; }
 
         [DataMember(Name = "acous", Order = 12)]
-        public int Acousticness { get; set; }
+        public double Acousticness { get; set; }
 
         [DataMember(Name = "spch", Order = 13)]
-        public int Speechiness { get; set; }
+        public double Speechiness { get; set; }
 
-        [DataMember(Name = "pop", Order = 14)] public int Popularity { get; set; }
+        [DataMember(Name = "pop", Order = 14)] 
+        public double Popularity { get; set; }
 
         #endregion
 
@@ -52,6 +62,12 @@ namespace DataMiningSpotifyTop.Source
         public override string ToString()
         {
             return JsonConvert.SerializeObject(this);
+        }
+
+
+        public Song Clone()
+        {
+            return Clone(Id);
         }
 
 
@@ -75,6 +91,64 @@ namespace DataMiningSpotifyTop.Source
                 Speechiness = Speechiness,
                 Popularity = Popularity,
             };
+        }
+
+
+        public void Normalize(Song min, Song max)
+        {
+            BeatsPerMinute = NormalizedValue(BeatsPerMinute, min.BeatsPerMinute, max.BeatsPerMinute);
+            Energy = NormalizedValue(Energy, min.Energy, max.Energy);
+            Danceability = NormalizedValue(Danceability, min.Danceability, max.Danceability);
+            Loudness = NormalizedValue(Loudness, min.Loudness, max.Loudness);
+            Liveness = NormalizedValue(Liveness, min.Liveness, max.Liveness);
+            Valence = NormalizedValue(Valence, min.Valence, max.Valence);
+            Duration = NormalizedValue(Duration, min.Duration, max.Duration);
+            Acousticness = NormalizedValue(Acousticness, min.Acousticness, max.Acousticness);
+            Speechiness = NormalizedValue(Speechiness, min.Speechiness, max.Speechiness);
+            Popularity = NormalizedValue(Popularity, min.Popularity, max.Popularity);
+        }
+
+
+        double NormalizedValue(double value, double min, double max)
+        {
+            return (value - min) / (max - min);
+        }
+
+
+        public Song Normalized(Song min, Song max)
+        {
+            Song result = Clone();
+            result.Normalize(min, max);
+
+            return result;
+        }
+
+
+        public static double SquaredEuclidDistance(Song from, Song to)
+        {
+            return
+                DistanceSquareComponent(from.BeatsPerMinute, to.BeatsPerMinute) +
+                DistanceSquareComponent(from.Energy, to.Energy) +
+                DistanceSquareComponent(from.Danceability, to.Danceability) +
+                DistanceSquareComponent(from.Loudness, to.Loudness) +
+                DistanceSquareComponent(from.Liveness, to.Liveness) +
+                DistanceSquareComponent(from.Valence, to.Valence) +
+                DistanceSquareComponent(from.Duration, to.Duration) +
+                DistanceSquareComponent(from.Acousticness, to.Acousticness) +
+                DistanceSquareComponent(from.Speechiness, to.Speechiness) +
+                DistanceSquareComponent(from.Popularity, to.Popularity);
+        }
+
+
+        static double DistanceSquareComponent(double from, double to)
+        {
+            return (from - to) * (from - to);
+        }
+
+
+        public static double EuclidDistance(Song from, Song to)
+        {
+            return Math.Sqrt(SquaredEuclidDistance(from, to));
         }
 
         #endregion

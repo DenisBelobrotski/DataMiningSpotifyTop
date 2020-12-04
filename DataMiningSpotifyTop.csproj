@@ -47,9 +47,11 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Source\ListExtensions.cs" />
         <Compile Include="Source\SongsAnalyzer.cs" />
-        <Compile Include="Source\SongsClusterizer.cs" />
+        <Compile Include="Source\KMeans.cs" />
         <Compile Include="Source\SongsFileCleaner.cs" />
+        <Compile Include="Source\SongsNormalizer.cs" />
         <Compile Include="Source\SongsReader.cs" />
         <Compile Include="Source\Program.cs" />
         <Compile Include="Source\Song.cs" />
