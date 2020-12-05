@@ -109,9 +109,46 @@ namespace DataMiningSpotifyTop.Source
             Console.WriteLine($"Centroids:");
             kMeans.Centroids.ForEach(Console.WriteLine);
             
+            ShowSongsByClusters(kMeans.ClusterizedSongs);
+            ShowSongsByClusters(kMeans);
+        }
+
+
+        static void ShowSongsByClusters(List<ClusterizedSong> clusterizedSongs)
+        {
+            Dictionary<int, List<Song>> songsByCluster = new Dictionary<int, List<Song>>();
+
+            foreach (ClusterizedSong clusterizedSong in clusterizedSongs)
+            {
+                int key = clusterizedSong.ClusterIndex;
+                Song song = clusterizedSong.Song;
+                
+                if (songsByCluster.TryGetValue(key, out List<Song> clusterSongs))
+                {
+                    clusterSongs.Add(song);
+                }
+                else
+                {
+                    songsByCluster[key] = new List<Song>{ song };
+                }
+            }
+            
             Console.WriteLine();
             Console.WriteLine($"Clusters size:");
-            kMeans.Clusters.ForEach(songs => Console.WriteLine($"Size: {songs.Count}"));
+
+            foreach (int cluster in songsByCluster.Keys)
+            {
+                int songsCount = songsByCluster[cluster].Count;
+                Console.WriteLine($"Size: {songsCount}");
+            }
+        }
+
+
+        static void ShowSongsByClusters(ISongsClusterizer clusterizer)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Clusters size:");
+            clusterizer.Clusters.ForEach(cluster => Console.WriteLine($"Size: {cluster.Count}"));
         }
     }
 }

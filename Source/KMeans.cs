@@ -1,18 +1,21 @@
+using System;
 using System.Collections.Generic;
 
 namespace DataMiningSpotifyTop.Source
 {
-    public class KMeans
+    public class KMeans : ISongsClusterizer
     {
         #region Properties
 
         public List<Song> Songs { get; }
 
         public int ClustersCount { get; }
-        
+
         public int MaxIterationsCount { get; }
-        
+
         public List<Song> Centroids { get; private set; }
+
+        public List<ClusterizedSong> ClusterizedSongs { get; private set; }
         
         public List<List<Song>> Clusters { get; private set; }
 
@@ -37,20 +40,51 @@ namespace DataMiningSpotifyTop.Source
 
         public void Clusterize()
         {
+            ChooseCentroids();
+            PerformInitialIteration();
+            RecalculateCentroids();
+            
+            Console.WriteLine($"K-means initial iteration completed.");
+
+            bool songMovedBetweenClusters = true;
+
+            for (int iterationIndex = 0;
+                 (iterationIndex < MaxIterationsCount || MaxIterationsCount < 0) && songMovedBetweenClusters;
+                 iterationIndex++)
+            {
+                songMovedBetweenClusters = IterateClusters();
+                RegroupClusters();
+                RecalculateCentroids();
+                Console.WriteLine($"K-means iteration completed ({iterationIndex}/{MaxIterationsCount}).");
+            }
+        }
+
+
+        void ChooseCentroids()
+        {
             Centroids = new List<Song>(ClustersCount);
-            Clusters = new List<List<Song>>(ClustersCount);
             
             for (int i = 0; i < ClustersCount; i++)
             {
                 string stub = $"centroid_{i}";
-                
+
                 Song centroid = Songs.RandomObject().Clone(stub);
                 centroid.Title = stub;
                 centroid.Artist = stub;
                 centroid.Genre = stub;
 
                 Centroids.Add(centroid);
-                
+            }
+        }
+
+
+        void PerformInitialIteration()
+        {
+            ClusterizedSongs = new List<ClusterizedSong>(Songs.Capacity);
+            Clusters = new List<List<Song>>(ClustersCount);
+
+            for (int i = 0; i < ClustersCount; i++)
+            {
                 Clusters.Add(new List<Song>());
             }
 
@@ -58,26 +92,98 @@ namespace DataMiningSpotifyTop.Source
             {
                 Song song = Songs[songIndex];
 
-                int nearestClusterIndex = 0;
-                Song centroid = Centroids[nearestClusterIndex];
-                double minDistance = Song.EuclidDistance(centroid, song);
+                int clusterIndex = GetNearestCentroidIndex(song, Centroids);
 
-                for (int clusterIndex = 1; clusterIndex < Centroids.Count; clusterIndex++)
+                ClusterizedSongs.Add(new ClusterizedSong
                 {
-                    centroid = Centroids[clusterIndex];
-                    double distance = Song.EuclidDistance(centroid, song);
-
-                    if (distance < minDistance)
-                    {
-                        minDistance = distance;
-                        nearestClusterIndex = clusterIndex;
-                    }
-                }
+                    Song = song,
+                    ClusterIndex = clusterIndex,
+                });
                 
-                Clusters[nearestClusterIndex].Add(song);
+                Clusters[clusterIndex].Add(song);
+            }
+        }
+
+
+        int GetNearestCentroidIndex(Song song, List<Song> centroids)
+        {
+            int nearestCentroidIndex = 0;
+            Song centroid = centroids[nearestCentroidIndex];
+            double minDistance = Song.EuclidDistance(centroid, song);
+
+            for (int clusterIndex = 1; clusterIndex < centroids.Count; clusterIndex++)
+            {
+                centroid = centroids[clusterIndex];
+                double distance = Song.EuclidDistance(centroid, song);
+
+                if (distance < minDistance)
+                {
+                    minDistance = distance;
+                    nearestCentroidIndex = clusterIndex;
+                }
+            }
+
+            return nearestCentroidIndex;
+        }
+
+
+        bool IterateClusters()
+        {
+            bool songMovedBetweenClusters = false;
+
+            foreach (ClusterizedSong song in ClusterizedSongs)
+            {
+                int currentSongCluster = song.ClusterIndex;
+                int clusterIndex = GetNearestCentroidIndex(song.Song, Centroids);
+
+                if (currentSongCluster != clusterIndex)
+                {
+                    songMovedBetweenClusters = true;
+                    song.ClusterIndex = clusterIndex;
+                }
+            }
+
+            return songMovedBetweenClusters;
+        }
+
+
+        void RegroupClusters()
+        {
+            foreach (List<Song> cluster in Clusters)
+            {
+                cluster.Clear();
             }
             
-            // iterate songs and clusters
+            foreach (ClusterizedSong clusterizedSong in ClusterizedSongs)
+            {
+                Clusters[clusterizedSong.ClusterIndex].Add(clusterizedSong.Song);
+            }
+        }
+
+
+        void RecalculateCentroids()
+        {
+            for (int clusterIndex = 0; clusterIndex < ClustersCount; clusterIndex++)
+            {
+                List<Song> cluster = Clusters[clusterIndex];
+                Song centroid = Centroids[clusterIndex];
+
+                int clusterCardinality = cluster.Count;
+
+                if (clusterCardinality <= 0)
+                {
+                    continue;
+                }
+                
+                centroid.CopyValues(cluster[0]);
+
+                for (int songIndex = 1; songIndex < clusterCardinality; songIndex++)
+                {
+                    centroid.Add(cluster[songIndex]);
+                }
+                
+                centroid.Divide(Convert.ToDouble(clusterCardinality));
+            }
         }
 
         #endregion

@@ -2,8 +2,8 @@
 
 
 ### Spotify song datasets
-1. https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks
-2. https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year
+1. https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year
+2. https://www.kaggle.com/yamaerenay/spotify-dataset-19212020-160k-tracks
 3. https://www.kaggle.com/theoverman/the-spotify-hit-predictor-dataset
 4. https://www.kaggle.com/nadintamer/top-tracks-of-2017
 5. https://www.kaggle.com/nadintamer/top-spotify-tracks-of-2018
@@ -23,6 +23,16 @@ https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year
 ### Spotify Web API
 https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
 
-### Алгоритмы
+### Алгоритмы k-means
 1. https://wiki.loginom.ru/articles/k-means.html
-2. https://docs.microsoft.com/ru-ru/analysis-services/data-mining/microsoft-clustering-algorithm?view=asallproducts-allversionsы
+2. https://docs.microsoft.com/ru-ru/analysis-services/data-mining/microsoft-clustering-algorithm?view=asallproducts-allversions
+3. https://habr.com/ru/post/101338/
+4. https://habr.com/ru/post/67078/
+
+### Зависимости
+https://github.com/DenisBelobrotski/CsvSerializer
+https://github.com/swharden/ScottPlot
+
+### To Do List
+1. Выбирать на первом шаге не рандомные точки, самые отдаленные друг от друга.
+2. Попробовать c-means.

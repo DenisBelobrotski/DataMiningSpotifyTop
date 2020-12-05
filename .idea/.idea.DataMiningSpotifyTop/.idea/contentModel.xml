@@ -17,6 +17,8 @@
         <e p="top10s.csv" t="Include" />
       </e>
       <e p="Source" t="Include">
+        <e p="ClusterizedSong.cs" t="Include" />
+        <e p="ISongsClusterizer.cs" t="Include" />
         <e p="KMeans.cs" t="Include" />
         <e p="ListExtensions.cs" t="Include" />
         <e p="Program.cs" t="Include" />

@@ -124,6 +124,51 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
+        public void Add(Song value)
+        {
+            BeatsPerMinute += value.BeatsPerMinute;
+            Energy += value.Energy;
+            Danceability += value.Danceability;
+            Loudness += value.Loudness;
+            Liveness += value.Liveness;
+            Valence += value.Valence;
+            Duration += value.Duration;
+            Acousticness += value.Acousticness;
+            Speechiness += value.Speechiness;
+            Popularity += value.Popularity;
+        }
+        
+        
+        public void Divide(double divider)
+        {
+            BeatsPerMinute /= divider;
+            Energy /= divider;
+            Danceability /= divider;
+            Loudness /= divider;
+            Liveness /= divider;
+            Valence /= divider;
+            Duration /= divider;
+            Acousticness /= divider;
+            Speechiness /= divider;
+            Popularity /= divider;
+        }
+
+
+        public void CopyValues(Song from)
+        {
+            BeatsPerMinute = from.BeatsPerMinute;
+            Energy = from.Energy;
+            Danceability = from.Danceability;
+            Loudness = from.Loudness;
+            Liveness = from.Liveness;
+            Valence = from.Valence;
+            Duration = from.Duration;
+            Acousticness = from.Acousticness;
+            Speechiness = from.Speechiness;
+            Popularity = from.Popularity;
+        }
+
+
         public static double SquaredEuclidDistance(Song from, Song to)
         {
             return
