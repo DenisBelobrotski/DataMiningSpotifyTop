@@ -4,7 +4,7 @@ namespace DataMiningSpotifyTop.Source
 {
     public class RandomCentroidsChooser : ICentroidsChooser
     {
-        public List<Song> GetCentroids(List<Song> data, int clustersCount)
+        public List<Song> GetCentroids(List<Song> songs, int clustersCount)
         {
             List<Song> centroids = new List<Song>(clustersCount);
             
@@ -12,7 +12,7 @@ namespace DataMiningSpotifyTop.Source
             {
                 string stub = $"centroid_{i}";
 
-                Song centroid = data.RandomObject().Clone(stub);
+                Song centroid = songs.RandomObject().Clone(stub);
                 centroid.Title = stub;
                 centroid.Artist = stub;
                 centroid.Genre = stub;

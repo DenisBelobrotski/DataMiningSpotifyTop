@@ -95,7 +95,7 @@ namespace DataMiningSpotifyTop.Source
             {
                 Song song = Songs[songIndex];
 
-                int clusterIndex = GetNearestCentroidIndex(song, Centroids);
+                int clusterIndex = GetNearestCentroidIndex(song, Centroids, DistanceFunc);
 
                 ClusterizedSongs.Add(new ClusterizedSong
                 {
@@ -108,16 +108,16 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        int GetNearestCentroidIndex(Song song, List<Song> centroids)
+        int GetNearestCentroidIndex(Song song, List<Song> centroids, IDistanceFunc distanceFunc)
         {
             int nearestCentroidIndex = 0;
             Song centroid = centroids[nearestCentroidIndex];
-            double minDistance = DistanceFunc.GetDistance(centroid, song);
+            double minDistance = distanceFunc.GetDistance(centroid, song);
 
             for (int clusterIndex = 1; clusterIndex < centroids.Count; clusterIndex++)
             {
                 centroid = centroids[clusterIndex];
-                double distance = DistanceFunc.GetDistance(centroid, song);
+                double distance = distanceFunc.GetDistance(centroid, song);
 
                 if (distance < minDistance)
                 {
@@ -137,7 +137,7 @@ namespace DataMiningSpotifyTop.Source
             foreach (ClusterizedSong song in ClusterizedSongs)
             {
                 int currentSongCluster = song.ClusterIndex;
-                int clusterIndex = GetNearestCentroidIndex(song.Song, Centroids);
+                int clusterIndex = GetNearestCentroidIndex(song.Song, Centroids, DistanceFunc);
 
                 if (currentSongCluster != clusterIndex)
                 {

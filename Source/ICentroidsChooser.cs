@@ -4,6 +4,6 @@ namespace DataMiningSpotifyTop.Source
 {
     public interface ICentroidsChooser
     {
-        List<Song> GetCentroids(List<Song> data, int clustersCount);
+        List<Song> GetCentroids(List<Song> songs, int clustersCount);
     }
 }

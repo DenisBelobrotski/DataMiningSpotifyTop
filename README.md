@@ -34,6 +34,7 @@ https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year
 3. [Обзор алгоритмов кластеризации данных](https://habr.com/ru/post/101338/)
 4. [Алгоритмы k-means и c-means](https://habr.com/ru/post/67078/)
 5. [k-means++](https://ru.wikipedia.org/wiki/K-means%2B%2B)
+6. [k-means](https://ru.qaz.wiki/wiki/K-means_clustering)
 
 ### Зависимости
 1. [CSV Serializer](https://github.com/DenisBelobrotski/CsvSerializer)
