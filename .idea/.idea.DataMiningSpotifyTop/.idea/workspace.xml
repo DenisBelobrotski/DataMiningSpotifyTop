@@ -9,12 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="06bae3bd-534b-409d-8110-c196efef4598" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ThirdParty/CsvSerializer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/KMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/KMeans.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,17 +19,6 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/de/544df211/List`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/0B76D74C-9007-4047-ADC3-E5DBD5D3F1DE/a8/799189bb/Buffer`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/33/a35fa940/Int32.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D6D3AC03-BF86-4882-89C2-EBF3A45CE0A1/c3/2c9adec5/__Error.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5DE66FF1-1FCB-4513-8463-255B392B032B/75/ed330b13/Match.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/22/1a106110/String.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/dd/c467b2f9/Comparison`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D6D3AC03-BF86-4882-89C2-EBF3A45CE0A1/da/f61e9152/ThrowHelper.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/A15528D0-C9D3-41E5-AD6A-6C61F6853F0F/b3/f2a38cd0/DataMemberAttribute.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -124,6 +109,7 @@
       <workItem from="1607104692930" duration="11758000" />
       <workItem from="1607199472743" duration="3036000" />
       <workItem from="1607247590339" duration="2995000" />
+      <workItem from="1607251011955" duration="208000" />
     </task>
     <servers />
   </component>
@@ -275,27 +261,13 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/ThirdParty/CsvSerializer/CsvSerializer.cs</url>
           <line>380</line>
-          <properties documentPath="D:\MyData\Projects\Study\RiderProjects\DataMiningSpotifyTop\ThirdParty\CsvSerializer\CsvSerializer.cs" initialLine="380">
-            <startOffsets>
-              <option value="14947" />
-            </startOffsets>
-            <endOffsets>
-              <option value="14994" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\MyData\Projects\Study\RiderProjects\DataMiningSpotifyTop\ThirdParty\CsvSerializer\CsvSerializer.cs" initialLine="380" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/ThirdParty/CsvSerializer/CsvSerializer.cs</url>
           <line>386</line>
-          <properties documentPath="D:\MyData\Projects\Study\RiderProjects\DataMiningSpotifyTop\ThirdParty\CsvSerializer\CsvSerializer.cs" initialLine="386">
-            <startOffsets>
-              <option value="15261" />
-            </startOffsets>
-            <endOffsets>
-              <option value="15308" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="D:\MyData\Projects\Study\RiderProjects\DataMiningSpotifyTop\ThirdParty\CsvSerializer\CsvSerializer.cs" initialLine="386" />
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
