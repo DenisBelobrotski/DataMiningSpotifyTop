@@ -26,6 +26,8 @@ namespace DataMiningSpotifyTop.Source
             // ShowNormalizedSongs(normalizer);
             
             KMeans kMeans = new KMeans(normalizer.NormalizedSongs, 5, -1);
+            kMeans.CentroidsChooser = new PlusPlusCentroidsChooser(new SquaredEuclidDistanceFunc());
+            kMeans.DistanceFunc = new SquaredEuclidDistanceFunc();
             kMeans.Clusterize();
             
             ShowClusters(kMeans);

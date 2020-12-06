@@ -48,8 +48,13 @@
     <ItemGroup>
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Source\ClusterizedSong.cs" />
+        <Compile Include="Source\EuclidDistanceFunc.cs" />
+        <Compile Include="Source\ICentroidsChooser.cs" />
+        <Compile Include="Source\IDistanceFunc.cs" />
         <Compile Include="Source\ISongsClusterizer.cs" />
         <Compile Include="Source\ListExtensions.cs" />
+        <Compile Include="Source\PlusPlusCentroidsChooser.cs" />
+        <Compile Include="Source\RandomCentroidsChooser.cs" />
         <Compile Include="Source\SongsAnalyzer.cs" />
         <Compile Include="Source\KMeans.cs" />
         <Compile Include="Source\SongsFileCleaner.cs" />
@@ -57,6 +62,7 @@
         <Compile Include="Source\SongsReader.cs" />
         <Compile Include="Source\Program.cs" />
         <Compile Include="Source\Song.cs" />
+        <Compile Include="Source\SquaredEuclidDistanceFunc.cs" />
         <Compile Include="ThirdParty\CsvSerializer\CsvSerializer.cs" />
     </ItemGroup>
     <ItemGroup>

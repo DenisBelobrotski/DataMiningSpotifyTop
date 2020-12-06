@@ -5,6 +5,15 @@ namespace DataMiningSpotifyTop.Source
 {
     public class KMeans : ISongsClusterizer
     {
+        #region Fields
+
+        IDistanceFunc distanceFunc;
+        ICentroidsChooser centroidsChooser;
+
+        #endregion
+
+
+
         #region Properties
 
         public List<Song> Songs { get; }
@@ -12,11 +21,23 @@ namespace DataMiningSpotifyTop.Source
         public int ClustersCount { get; }
 
         public int MaxIterationsCount { get; }
+        
+        public IDistanceFunc DistanceFunc
+        {
+            get => distanceFunc ?? (distanceFunc = new EuclidDistanceFunc());
+            set => distanceFunc = value;
+        }
+
+        public ICentroidsChooser CentroidsChooser
+        {
+            get => centroidsChooser ?? (centroidsChooser = new RandomCentroidsChooser());
+            set => centroidsChooser = value;
+        }
 
         public List<Song> Centroids { get; private set; }
 
         public List<ClusterizedSong> ClusterizedSongs { get; private set; }
-        
+
         public List<List<Song>> Clusters { get; private set; }
 
         #endregion
@@ -40,10 +61,10 @@ namespace DataMiningSpotifyTop.Source
 
         public void Clusterize()
         {
-            ChooseCentroids();
+            Centroids = CentroidsChooser.GetCentroids(Songs, ClustersCount);
             PerformInitialIteration();
             RecalculateCentroids();
-            
+
             Console.WriteLine($"K-means initial iteration completed.");
 
             bool songMovedBetweenClusters = true;
@@ -56,24 +77,6 @@ namespace DataMiningSpotifyTop.Source
                 RegroupClusters();
                 RecalculateCentroids();
                 Console.WriteLine($"K-means iteration completed ({iterationIndex}/{MaxIterationsCount}).");
-            }
-        }
-
-
-        void ChooseCentroids()
-        {
-            Centroids = new List<Song>(ClustersCount);
-            
-            for (int i = 0; i < ClustersCount; i++)
-            {
-                string stub = $"centroid_{i}";
-
-                Song centroid = Songs.RandomObject().Clone(stub);
-                centroid.Title = stub;
-                centroid.Artist = stub;
-                centroid.Genre = stub;
-
-                Centroids.Add(centroid);
             }
         }
 
@@ -99,7 +102,7 @@ namespace DataMiningSpotifyTop.Source
                     Song = song,
                     ClusterIndex = clusterIndex,
                 });
-                
+
                 Clusters[clusterIndex].Add(song);
             }
         }
@@ -109,12 +112,12 @@ namespace DataMiningSpotifyTop.Source
         {
             int nearestCentroidIndex = 0;
             Song centroid = centroids[nearestCentroidIndex];
-            double minDistance = Song.EuclidDistance(centroid, song);
+            double minDistance = DistanceFunc.GetDistance(centroid, song);
 
             for (int clusterIndex = 1; clusterIndex < centroids.Count; clusterIndex++)
             {
                 centroid = centroids[clusterIndex];
-                double distance = Song.EuclidDistance(centroid, song);
+                double distance = DistanceFunc.GetDistance(centroid, song);
 
                 if (distance < minDistance)
                 {
@@ -153,7 +156,7 @@ namespace DataMiningSpotifyTop.Source
             {
                 cluster.Clear();
             }
-            
+
             foreach (ClusterizedSong clusterizedSong in ClusterizedSongs)
             {
                 Clusters[clusterizedSong.ClusterIndex].Add(clusterizedSong.Song);
@@ -174,14 +177,14 @@ namespace DataMiningSpotifyTop.Source
                 {
                     continue;
                 }
-                
+
                 centroid.CopyValues(cluster[0]);
 
                 for (int songIndex = 1; songIndex < clusterCardinality; songIndex++)
                 {
                     centroid.Add(cluster[songIndex]);
                 }
-                
+
                 centroid.Divide(Convert.ToDouble(clusterCardinality));
             }
         }

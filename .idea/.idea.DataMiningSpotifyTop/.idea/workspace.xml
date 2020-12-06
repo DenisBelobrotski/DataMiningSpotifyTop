@@ -15,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/KMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/KMeans.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Song.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,9 +55,16 @@
         <option value="$PROJECT_DIR$/Source/ClusterizedSongInfo.cs" />
         <option value="$PROJECT_DIR$/Source/ClusterizedSong.cs" />
         <option value="$PROJECT_DIR$/Source/ISongsClusterizer.cs" />
-        <option value="$PROJECT_DIR$/Source/Program.cs" />
         <option value="$PROJECT_DIR$/Source/Song.cs" />
+        <option value="$PROJECT_DIR$/Source/ICentroidsChooser.cs" />
+        <option value="$PROJECT_DIR$/Source/RandomCentroidsChooser.cs" />
+        <option value="$PROJECT_DIR$/Source/IDistance.cs" />
+        <option value="$PROJECT_DIR$/Source/EuclidDistance.cs" />
+        <option value="$PROJECT_DIR$/Source/SquaredEuclidDistance.cs" />
+        <option value="$PROJECT_DIR$/Source/IDistanceFunc.cs" />
         <option value="$PROJECT_DIR$/Source/KMeans.cs" />
+        <option value="$PROJECT_DIR$/Source/PlusPlusCentroidsChooser.cs" />
+        <option value="$PROJECT_DIR$/Source/Program.cs" />
       </list>
     </option>
   </component>
@@ -116,7 +122,8 @@
       <workItem from="1606843095973" duration="5582000" />
       <workItem from="1606932452586" duration="5406000" />
       <workItem from="1607104692930" duration="11758000" />
-      <workItem from="1607199472743" duration="2866000" />
+      <workItem from="1607199472743" duration="3036000" />
+      <workItem from="1607247590339" duration="2995000" />
     </task>
     <servers />
   </component>
@@ -149,22 +156,22 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state width="451" height="464" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1606425987341" />
-    <state width="1493" height="206" key="GridCell.Tab.0.bottom" timestamp="1607202346230">
+    <state width="1493" height="206" key="GridCell.Tab.0.bottom" timestamp="1607249948264">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607202346230" />
-    <state width="1493" height="206" key="GridCell.Tab.0.center" timestamp="1607202346230">
+    <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607249948264" />
+    <state width="1493" height="206" key="GridCell.Tab.0.center" timestamp="1607249948263">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607202346230" />
-    <state width="1493" height="206" key="GridCell.Tab.0.left" timestamp="1607202346230">
+    <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
+    <state width="1493" height="206" key="GridCell.Tab.0.left" timestamp="1607249948263">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607202346230" />
-    <state width="1493" height="206" key="GridCell.Tab.0.right" timestamp="1607202346230">
+    <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
+    <state width="1493" height="206" key="GridCell.Tab.0.right" timestamp="1607249948263">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607202346230" />
+    <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
     <state width="1493" height="283" key="GridCell.Tab.1.bottom" timestamp="1607118443045">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -233,10 +240,10 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="149" key="Rider.ProjectTemplateDialog.Size/0.0.1536.834@0.0.1536.834" timestamp="1606410311762" />
-    <state x="601" y="134" key="RiderGenerateDialog" timestamp="1606937705544">
+    <state x="601" y="134" key="RiderGenerateDialog" timestamp="1607249081380">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="601" y="134" key="RiderGenerateDialog/0.0.1536.834@0.0.1536.834" timestamp="1606937705544" />
+    <state x="601" y="134" key="RiderGenerateDialog/0.0.1536.834@0.0.1536.834" timestamp="1607249081380" />
     <state x="277" y="62" key="SettingsEditor" timestamp="1606156768415">
       <screen x="0" y="0" width="1536" height="834" />
     </state>

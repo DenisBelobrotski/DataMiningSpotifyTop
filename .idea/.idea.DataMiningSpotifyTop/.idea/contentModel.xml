@@ -18,15 +18,21 @@
       </e>
       <e p="Source" t="Include">
         <e p="ClusterizedSong.cs" t="Include" />
+        <e p="EuclidDistanceFunc.cs" t="Include" />
+        <e p="ICentroidsChooser.cs" t="Include" />
+        <e p="IDistanceFunc.cs" t="Include" />
         <e p="ISongsClusterizer.cs" t="Include" />
         <e p="KMeans.cs" t="Include" />
         <e p="ListExtensions.cs" t="Include" />
+        <e p="PlusPlusCentroidsChooser.cs" t="Include" />
         <e p="Program.cs" t="Include" />
+        <e p="RandomCentroidsChooser.cs" t="Include" />
         <e p="Song.cs" t="Include" />
         <e p="SongsAnalyzer.cs" t="Include" />
         <e p="SongsFileCleaner.cs" t="Include" />
         <e p="SongsNormalizer.cs" t="Include" />
         <e p="SongsReader.cs" t="Include" />
+        <e p="SquaredEuclidDistanceFunc.cs" t="Include" />
       </e>
       <e p="ThirdParty" t="Include">
         <e p="CsvSerializer" t="Include">
