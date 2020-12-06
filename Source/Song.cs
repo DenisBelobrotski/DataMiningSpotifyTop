@@ -8,18 +8,23 @@ namespace DataMiningSpotifyTop.Source
     {
         #region Fields
 
+        // not important
         [DataMember(Name = "id", Order = 0)] 
         public string Id { get; set; }
 
+        // not important
         [DataMember(Name = "title", Order = 1)]
         public string Title { get; set; }
 
+        // not important
         [DataMember(Name = "artist", Order = 2)]
         public string Artist { get; set; }
 
+        // not important
         [DataMember(Name = "top genre", Order = 3)]
         public string Genre { get; set; }
 
+        // not important
         [DataMember(Name = "year", Order = 4)] 
         public int Year { get; set; }
 
@@ -50,6 +55,7 @@ namespace DataMiningSpotifyTop.Source
         [DataMember(Name = "spch", Order = 13)]
         public double Speechiness { get; set; }
 
+        // not important
         [DataMember(Name = "pop", Order = 14)] 
         public double Popularity { get; set; }
 
@@ -89,7 +95,7 @@ namespace DataMiningSpotifyTop.Source
                 Duration = Duration,
                 Acousticness = Acousticness,
                 Speechiness = Speechiness,
-                Popularity = Popularity,
+                // Popularity = Popularity,
             };
         }
 
@@ -105,7 +111,7 @@ namespace DataMiningSpotifyTop.Source
             Duration = NormalizedValue(Duration, min.Duration, max.Duration);
             Acousticness = NormalizedValue(Acousticness, min.Acousticness, max.Acousticness);
             Speechiness = NormalizedValue(Speechiness, min.Speechiness, max.Speechiness);
-            Popularity = NormalizedValue(Popularity, min.Popularity, max.Popularity);
+            // Popularity = NormalizedValue(Popularity, min.Popularity, max.Popularity);
         }
 
 
@@ -135,7 +141,7 @@ namespace DataMiningSpotifyTop.Source
             Duration += value.Duration;
             Acousticness += value.Acousticness;
             Speechiness += value.Speechiness;
-            Popularity += value.Popularity;
+            // Popularity += value.Popularity;
         }
         
         
@@ -150,7 +156,7 @@ namespace DataMiningSpotifyTop.Source
             Duration /= divider;
             Acousticness /= divider;
             Speechiness /= divider;
-            Popularity /= divider;
+            // Popularity /= divider;
         }
 
 
@@ -180,8 +186,9 @@ namespace DataMiningSpotifyTop.Source
                 DistanceSquareComponent(from.Valence, to.Valence) +
                 DistanceSquareComponent(from.Duration, to.Duration) +
                 DistanceSquareComponent(from.Acousticness, to.Acousticness) +
-                DistanceSquareComponent(from.Speechiness, to.Speechiness) +
-                DistanceSquareComponent(from.Popularity, to.Popularity);
+                DistanceSquareComponent(from.Speechiness, to.Speechiness);
+
+            // DistanceSquareComponent(from.Popularity, to.Popularity);
         }
 
 

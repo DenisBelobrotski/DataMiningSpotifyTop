@@ -1,14 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace DataMiningSpotifyTop.Source
 {
     class Program
     {
+        const string ResourcesRoot = @"../../Resources";
+        const int ExperimentsCount = 5;
+        const int ClustersCount = 10;
+        const int MaxIterationsCount = 100000;
+        
+        
         public static void Main(string[] args)
         {
-            SongsReader songsReader = new SongsReader(@"../../Resources/top10s.csv", ',');
+            for (int i = 0; i < ExperimentsCount; i++)
+            {
+                KMeans kMeans = BuildModel();
+                TestPredictor(kMeans, i);
+            }
+        }
+
+
+        static KMeans BuildModel()
+        {
+            SongsReader songsReader = new SongsReader($"{ResourcesRoot}/top10s.csv", ',');
             songsReader.ReadSongs();
 
             List<Song> songs = songsReader.Songs;
@@ -20,17 +38,19 @@ namespace DataMiningSpotifyTop.Source
             
             // ShowAnalyzerResults(analyzer);
             
-            SongsNormalizer normalizer = new SongsNormalizer(songs);
+            SongsNormalizer normalizer = new SongsNormalizer(songs, true);
             normalizer.Normalize();
             
             // ShowNormalizedSongs(normalizer);
             
-            KMeans kMeans = new KMeans(normalizer.NormalizedSongs, 5, 1000000);
+            KMeans kMeans = new KMeans(normalizer.NormalizedSongs, ClustersCount, MaxIterationsCount);
             // kMeans.CentroidsChooser = new PlusPlusCentroidsChooser(new SquaredEuclidDistanceFunc());
             kMeans.DistanceFunc = new SquaredEuclidDistanceFunc();
             kMeans.Clusterize();
             
             ShowClusters(kMeans);
+
+            return kMeans;
         }
 
 
@@ -151,6 +171,49 @@ namespace DataMiningSpotifyTop.Source
             Console.WriteLine();
             Console.WriteLine($"Clusters size:");
             clusterizer.Clusters.ForEach(cluster => Console.WriteLine($"Size: {cluster.Count}"));
+        }
+
+
+        static void TestPredictor(ISongsClusterizer clusterizer, int experimentIndex)
+        {
+            SongsReader analyzingSongsReader = new SongsReader($"{ResourcesRoot}/test_data.csv", ',');
+            analyzingSongsReader.ReadSongs();
+
+            List<Song> analyzingSongs = analyzingSongsReader.Songs;
+            
+            Console.WriteLine("Read songs:");
+            ShowReadSongs(analyzingSongs);
+            
+            SongsNormalizer normalizer = new SongsNormalizer(analyzingSongs, false);
+            normalizer.Normalize();
+            analyzingSongs = normalizer.NormalizedSongs;
+            
+            Console.WriteLine("Normalized songs:");
+            ShowReadSongs(analyzingSongs);
+
+            IDistanceFunc distanceFunc = new EuclidDistanceFunc();
+            SongSuccessPredictor predictor = new SongSuccessPredictor(clusterizer, distanceFunc);
+            predictor.PrepareData();
+
+            List<Prediction> predictions = analyzingSongs.Select(song => predictor.PredictSuccess(song)).ToList();
+            
+            Console.WriteLine("Predictions:");
+            predictions.ForEach(Console.WriteLine);
+
+            const string parentDirectoryPath = @"Predictions";
+
+            if (!Directory.Exists(parentDirectoryPath))
+            {
+                Directory.CreateDirectory(parentDirectoryPath);
+            }
+
+            const string dateFormat = "MM.dd.yyyy_HH:mm:ss";
+            string currentDate = DateTime.Now.ToString(dateFormat);
+            string fileName = $"predictions_{experimentIndex}_{currentDate}.json";
+            string filePath = $"{parentDirectoryPath}/{fileName}";
+
+            string outputJson = JsonConvert.SerializeObject(predictions, Formatting.Indented);
+            File.AppendAllText(filePath, outputJson);
         }
     }
 }

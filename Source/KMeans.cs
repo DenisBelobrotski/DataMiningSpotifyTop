@@ -81,6 +81,12 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
+        public int GetAssociatedClusterIndex(Song song)
+        {
+            return GetNearestCentroidIndex(song, Centroids, DistanceFunc);
+        }
+
+
         void PerformInitialIteration()
         {
             ClusterizedSongs = new List<ClusterizedSong>(Songs.Capacity);

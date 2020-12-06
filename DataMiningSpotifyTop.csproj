@@ -54,6 +54,7 @@
         <Compile Include="Source\ISongsClusterizer.cs" />
         <Compile Include="Source\ListExtensions.cs" />
         <Compile Include="Source\PlusPlusCentroidsChooser.cs" />
+        <Compile Include="Source\Prediction.cs" />
         <Compile Include="Source\RandomCentroidsChooser.cs" />
         <Compile Include="Source\SongsAnalyzer.cs" />
         <Compile Include="Source\KMeans.cs" />
@@ -62,6 +63,7 @@
         <Compile Include="Source\SongsReader.cs" />
         <Compile Include="Source\Program.cs" />
         <Compile Include="Source\Song.cs" />
+        <Compile Include="Source\SongSuccessPredictor.cs" />
         <Compile Include="Source\SquaredEuclidDistanceFunc.cs" />
         <Compile Include="ThirdParty\CsvSerializer\CsvSerializer.cs" />
     </ItemGroup>

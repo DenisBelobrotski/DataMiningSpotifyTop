@@ -25,6 +25,7 @@
         <e p="KMeans.cs" t="Include" />
         <e p="ListExtensions.cs" t="Include" />
         <e p="PlusPlusCentroidsChooser.cs" t="Include" />
+        <e p="Prediction.cs" t="Include" />
         <e p="Program.cs" t="Include" />
         <e p="RandomCentroidsChooser.cs" t="Include" />
         <e p="Song.cs" t="Include" />
@@ -32,6 +33,7 @@
         <e p="SongsFileCleaner.cs" t="Include" />
         <e p="SongsNormalizer.cs" t="Include" />
         <e p="SongsReader.cs" t="Include" />
+        <e p="SongSuccessPredictor.cs" t="Include" />
         <e p="SquaredEuclidDistanceFunc.cs" t="Include" />
       </e>
       <e p="ThirdParty" t="Include">
