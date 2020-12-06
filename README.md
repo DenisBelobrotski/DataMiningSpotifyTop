@@ -38,7 +38,3 @@ https://www.kaggle.com/leonardopena/top-spotify-songs-from-20102019-by-year
 ### Зависимости
 1. [CSV Serializer](https://github.com/DenisBelobrotski/CsvSerializer)
 2. [Plotting Tool](https://github.com/swharden/ScottPlot)
-
-### To Do List
-1. Выбирать на первом шаге не рандомные точки, самые отдаленные друг от друга.
-2. Попробовать c-means.
