@@ -10,7 +10,7 @@ namespace DataMiningSpotifyTop.Source
 
         public List<double> Probabilities { get; }
 
-        ISongsClusterizer Clusterizer { get; }
+        BaseKMeans Clusterizer { get; }
 
         IDistanceFunc DistanceFunc { get; }
 
@@ -20,7 +20,7 @@ namespace DataMiningSpotifyTop.Source
 
         #region Object lifecycle
 
-        public SongSuccessPredictor(ISongsClusterizer clusterizer, IDistanceFunc distanceFunc)
+        public SongSuccessPredictor(BaseKMeans clusterizer, IDistanceFunc distanceFunc)
         {
             Clusterizer = clusterizer;
             DistanceFunc = distanceFunc;

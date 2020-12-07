@@ -12,11 +12,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ISongsClusterizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ISongsClusterizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/KMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/KMeans.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ISongsClusterizer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/KMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DynamicKMeans.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Song.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SongsNormalizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SongsNormalizer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SongSuccessPredictor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SongSuccessPredictor.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +26,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2676A2DA-6EDC-420E-890E-D28AA4572EE5/5/JsonConvert.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2676A2DA-6EDC-420E-890E-D28AA4572EE5/57/JsonSerializerInternalReader.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7D0BC631-CADD-4A07-BF74-717847E90CFA/66/Double.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/E22351E3-95F4-4D7B-8C48-60FCA2DCEE71/53/Last.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -58,11 +68,17 @@
         <option value="$PROJECT_DIR$/Source/Song.cs" />
         <option value="$PROJECT_DIR$/Source/ModelBuilder.cs" />
         <option value="$PROJECT_DIR$/Source/SongsNormalizer.cs" />
-        <option value="$PROJECT_DIR$/Source/KMeans.cs" />
         <option value="$PROJECT_DIR$/Source/SquaredEuclidDistanceFunc.cs" />
-        <option value="$PROJECT_DIR$/Source/ISongsClusterizer.cs" />
-        <option value="$PROJECT_DIR$/Source/SongSuccessPredictor.cs" />
         <option value="$PROJECT_DIR$/Source/Prediction.cs" />
+        <option value="$PROJECT_DIR$/Source/ISongsClusterizer.cs" />
+        <option value="$PROJECT_DIR$/Source/KMeansData.cs" />
+        <option value="$PROJECT_DIR$/Source/KMeans.cs" />
+        <option value="$PROJECT_DIR$/Source/KMeansModel.cs" />
+        <option value="$PROJECT_DIR$/Source/FileSystemHelper.cs" />
+        <option value="$PROJECT_DIR$/Source/SongSuccessPredictor.cs" />
+        <option value="$PROJECT_DIR$/Source/BaseKMeans.cs" />
+        <option value="$PROJECT_DIR$/Source/StaticKMeans.cs" />
+        <option value="$PROJECT_DIR$/Source/DynamicKMeans.cs" />
         <option value="$PROJECT_DIR$/Source/Program.cs" />
       </list>
     </option>
@@ -123,7 +139,8 @@
       <workItem from="1607104692930" duration="11758000" />
       <workItem from="1607199472743" duration="3036000" />
       <workItem from="1607247590339" duration="2995000" />
-      <workItem from="1607251011955" duration="10603000" />
+      <workItem from="1607251011955" duration="11137000" />
+      <workItem from="1607356509038" duration="9730000" />
     </task>
     <servers />
   </component>
@@ -156,91 +173,91 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="223" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.834@0.0.1536.834" timestamp="1606410944920" />
-    <state width="752" height="744" key="DebuggerActiveHint" timestamp="1607254221675">
+    <state width="752" height="744" key="DebuggerActiveHint" timestamp="1607371051067">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="451" height="464" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1606425987341" />
-    <state width="752" height="744" key="DebuggerActiveHint/0.23.2560.1337@0.23.2560.1337" timestamp="1607254221675" />
-    <state width="2518" height="375" key="GridCell.Tab.0.bottom" timestamp="1607262439211">
+    <state width="752" height="744" key="DebuggerActiveHint/0.23.2560.1337@0.23.2560.1337" timestamp="1607371051067" />
+    <state width="2518" height="375" key="GridCell.Tab.0.bottom" timestamp="1607371705136">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607249948264" />
-    <state width="2518" height="375" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607262439211" />
-    <state width="2518" height="375" key="GridCell.Tab.0.center" timestamp="1607262439210">
+    <state width="2518" height="375" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607371705136" />
+    <state width="2518" height="375" key="GridCell.Tab.0.center" timestamp="1607371705135">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607262439210" />
-    <state width="2518" height="375" key="GridCell.Tab.0.left" timestamp="1607262439209">
+    <state width="2518" height="375" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607371705135" />
+    <state width="2518" height="375" key="GridCell.Tab.0.left" timestamp="1607371705134">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607262439209" />
-    <state width="2518" height="375" key="GridCell.Tab.0.right" timestamp="1607262439210">
+    <state width="2518" height="375" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607371705134" />
+    <state width="2518" height="375" key="GridCell.Tab.0.right" timestamp="1607371705135">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607262439210" />
-    <state width="2518" height="487" key="GridCell.Tab.1.bottom" timestamp="1607257720191">
+    <state width="2518" height="375" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607371705135" />
+    <state width="2518" height="487" key="GridCell.Tab.1.bottom" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.1.center" timestamp="1607257720190">
+    <state width="2518" height="487" key="GridCell.Tab.1.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.1.center" timestamp="1607371544079">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1607118443044" />
-    <state width="2518" height="487" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720190" />
-    <state width="2518" height="487" key="GridCell.Tab.1.left" timestamp="1607257720190">
+    <state width="2518" height="487" key="GridCell.Tab.1.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544079" />
+    <state width="2518" height="487" key="GridCell.Tab.1.left" timestamp="1607371544079">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1607118443044" />
-    <state width="2518" height="487" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720190" />
-    <state width="2518" height="487" key="GridCell.Tab.1.right" timestamp="1607257720190">
+    <state width="2518" height="487" key="GridCell.Tab.1.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544079" />
+    <state width="2518" height="487" key="GridCell.Tab.1.right" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1607118443044" />
-    <state width="2518" height="487" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720190" />
-    <state width="2518" height="487" key="GridCell.Tab.2.bottom" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.1.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.2.bottom" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.2.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.2.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.2.center" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.2.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.2.center" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.2.center/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.2.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.2.left" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.2.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.2.left" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.2.left/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.2.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.2.right" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.2.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.2.right" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.2.right/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.2.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.3.bottom" timestamp="1607257720192">
+    <state width="2518" height="487" key="GridCell.Tab.2.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.3.bottom" timestamp="1607371544081">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.3.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.3.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720192" />
-    <state width="2518" height="487" key="GridCell.Tab.3.center" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.3.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544081" />
+    <state width="2518" height="487" key="GridCell.Tab.3.center" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.3.center/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.3.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.3.left" timestamp="1607257720191">
+    <state width="2518" height="487" key="GridCell.Tab.3.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.3.left" timestamp="1607371544080">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.3.left/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.3.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720191" />
-    <state width="2518" height="487" key="GridCell.Tab.3.right" timestamp="1607257720192">
+    <state width="2518" height="487" key="GridCell.Tab.3.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544080" />
+    <state width="2518" height="487" key="GridCell.Tab.3.right" timestamp="1607371544081">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="283" key="GridCell.Tab.3.right/0.0.1536.834@0.0.1536.834" timestamp="1607118443045" />
-    <state width="2518" height="487" key="GridCell.Tab.3.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607257720192" />
+    <state width="2518" height="487" key="GridCell.Tab.3.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607371544081" />
     <state width="1493" height="283" key="GridCell.Tab.4.bottom" timestamp="1607118443045">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -261,11 +278,11 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="361" y="149" key="Rider.ProjectTemplateDialog.Size/0.0.1536.834@0.0.1536.834" timestamp="1606410311762" />
-    <state x="1002" y="238" key="RiderGenerateDialog" timestamp="1607259381993">
+    <state x="1002" y="238" key="RiderGenerateDialog" timestamp="1607363822548">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state x="601" y="134" key="RiderGenerateDialog/0.0.1536.834@0.0.1536.834" timestamp="1607249081380" />
-    <state x="1002" y="238" key="RiderGenerateDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1607259381993" />
+    <state x="1002" y="238" key="RiderGenerateDialog/0.23.2560.1337@0.23.2560.1337" timestamp="1607363822548" />
     <state x="462" y="122" width="1409" height="946" key="SettingsEditor" timestamp="1607259278053">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
@@ -309,30 +326,46 @@
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Source/Program.cs</url>
-          <line>187</line>
-          <properties documentPath="$PROJECT_DIR$/Source/Program.cs" initialLine="177">
+          <condition expression="clusterizedSong.Song.Title.Contains(&quot;Wrecking Ball&quot;)" language="C#" />
+          <url>file://$PROJECT_DIR$/Source/BaseKMeans.cs</url>
+          <line>73</line>
+          <properties documentPath="$PROJECT_DIR$/Source/BaseKMeans.cs" initialLine="73">
             <startOffsets>
-              <option value="5923" />
+              <option value="1811" />
             </startOffsets>
             <endOffsets>
-              <option value="5946" />
+              <option value="1876" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Source/SongsNormalizer.cs</url>
-          <line>62</line>
-          <properties documentPath="$PROJECT_DIR$/Source/SongsNormalizer.cs" initialLine="64">
+          <condition expression="song.Title.Contains(&quot;Wrecking Ball&quot;) " language="C#" />
+          <url>file://$PROJECT_DIR$/Source/BaseKMeans.cs</url>
+          <line>96</line>
+          <properties documentPath="$PROJECT_DIR$/Source/BaseKMeans.cs" initialLine="84">
             <startOffsets>
-              <option value="1632" />
+              <option value="2211" />
             </startOffsets>
             <endOffsets>
-              <option value="1733" />
+              <option value="2285" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <condition expression="song.Title.Contains(&quot;Wrecking Ball&quot;) " language="C#" />
+          <url>file://$PROJECT_DIR$/Source/BaseKMeans.cs</url>
+          <line>80</line>
+          <properties documentPath="$PROJECT_DIR$/Source/BaseKMeans.cs" initialLine="80">
+            <startOffsets>
+              <option value="2032" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2061" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

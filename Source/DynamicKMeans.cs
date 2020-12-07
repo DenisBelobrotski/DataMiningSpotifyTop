@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace DataMiningSpotifyTop.Source
 {
-    public class KMeans : ISongsClusterizer
+    public class DynamicKMeans : BaseKMeans
     {
         #region Fields
 
-        IDistanceFunc distanceFunc;
         ICentroidsChooser centroidsChooser;
 
         #endregion
@@ -16,29 +15,20 @@ namespace DataMiningSpotifyTop.Source
 
         #region Properties
 
-        public List<Song> Songs { get; }
+        public override int ClustersCount { get; }
 
-        public int ClustersCount { get; }
-
-        public int MaxIterationsCount { get; }
-        
-        public IDistanceFunc DistanceFunc
-        {
-            get => distanceFunc ?? (distanceFunc = new EuclidDistanceFunc());
-            set => distanceFunc = value;
-        }
+        public int MaxIterationsCount { set; get; } = 100000;
 
         public ICentroidsChooser CentroidsChooser
         {
             get => centroidsChooser ?? (centroidsChooser = new RandomCentroidsChooser());
             set => centroidsChooser = value;
         }
-
-        public List<Song> Centroids { get; private set; }
-
-        public List<ClusterizedSong> ClusterizedSongs { get; private set; }
-
-        public List<List<Song>> Clusters { get; private set; }
+        
+        public KMeansModel Model => new KMeansModel
+        {
+            Centroids = new List<Song>(Centroids),
+        };
 
         #endregion
 
@@ -46,11 +36,10 @@ namespace DataMiningSpotifyTop.Source
 
         #region Object lifecycle
 
-        public KMeans(List<Song> songs, int clustersCount, int maxIterationsCount)
+        public DynamicKMeans(List<Song> songs, int clustersCount)
         {
             Songs = songs;
             ClustersCount = clustersCount;
-            MaxIterationsCount = maxIterationsCount;
         }
 
         #endregion
@@ -81,12 +70,6 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        public int GetAssociatedClusterIndex(Song song)
-        {
-            return GetNearestCentroidIndex(song, Centroids, DistanceFunc);
-        }
-
-
         void PerformInitialIteration()
         {
             ClusterizedSongs = new List<ClusterizedSong>(Songs.Capacity);
@@ -110,62 +93,6 @@ namespace DataMiningSpotifyTop.Source
                 });
 
                 Clusters[clusterIndex].Add(song);
-            }
-        }
-
-
-        int GetNearestCentroidIndex(Song song, List<Song> centroids, IDistanceFunc distanceFunc)
-        {
-            int nearestCentroidIndex = 0;
-            Song centroid = centroids[nearestCentroidIndex];
-            double minDistance = distanceFunc.GetDistance(centroid, song);
-
-            for (int clusterIndex = 1; clusterIndex < centroids.Count; clusterIndex++)
-            {
-                centroid = centroids[clusterIndex];
-                double distance = distanceFunc.GetDistance(centroid, song);
-
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    nearestCentroidIndex = clusterIndex;
-                }
-            }
-
-            return nearestCentroidIndex;
-        }
-
-
-        bool IterateClusters()
-        {
-            bool songMovedBetweenClusters = false;
-
-            foreach (ClusterizedSong song in ClusterizedSongs)
-            {
-                int currentSongCluster = song.ClusterIndex;
-                int clusterIndex = GetNearestCentroidIndex(song.Song, Centroids, DistanceFunc);
-
-                if (currentSongCluster != clusterIndex)
-                {
-                    songMovedBetweenClusters = true;
-                    song.ClusterIndex = clusterIndex;
-                }
-            }
-
-            return songMovedBetweenClusters;
-        }
-
-
-        void RegroupClusters()
-        {
-            foreach (List<Song> cluster in Clusters)
-            {
-                cluster.Clear();
-            }
-
-            foreach (ClusterizedSong clusterizedSong in ClusterizedSongs)
-            {
-                Clusters[clusterizedSong.ClusterIndex].Add(clusterizedSong.Song);
             }
         }
 

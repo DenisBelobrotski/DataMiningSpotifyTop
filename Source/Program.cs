@@ -1,51 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using Newtonsoft.Json;
 
 namespace DataMiningSpotifyTop.Source
 {
     class Program
     {
         const string ResourcesRoot = @"../../Resources";
-        const int ExperimentsCount = 5;
-        const int ClustersCount = 10;
-        const int MaxIterationsCount = 100000;
-        
-        
+        const int ExperimentsCount = 1;
+        const int ClustersCount = 3;
+
+
         public static void Main(string[] args)
+        {
+            List<Song> songs = ReadOriginalSongs();
+            
+            //TODO: predictions based on models (static k-means)
+            //TODO: predict on each read model
+            //TODO: analyze models
+            //TODO: steps: 1. create, 2. save, 3. read, 4. analyze, 5. predict
+            Create(songs);
+            Read(songs);
+        }
+
+
+        static void Create(List<Song> songs)
         {
             for (int i = 0; i < ExperimentsCount; i++)
             {
-                KMeans kMeans = BuildModel();
-                TestPredictor(kMeans, i);
+                DynamicKMeans kMeans = BuildModel(songs);
+                
+                SongSuccessPredictor predictor = new SongSuccessPredictor(kMeans, kMeans.DistanceFunc);
+                predictor.PrepareData();
+                
+                List<Prediction> predictions = BuildPredictions(predictor);
+                FileSystemHelper.SavePredictions(predictions);
+
+                KMeansModel model = kMeans.Model;
+                FileSystemHelper.SaveKMeansModel(model);
             }
         }
 
 
-        static KMeans BuildModel()
+        static void Read(List<Song> songs)
+        {
+            List<KMeansModel> models = FileSystemHelper.ReadAllModels();
+            List<StaticKMeans> datas = models.Select(model => new StaticKMeans(songs, model)).ToList();
+            datas.ForEach(data => data.ReadModel());
+            
+            ShowClusters(datas.Last());
+            
+            // SongSuccessPredictor test = new SongSuccessPredictor(datas.Last(), datas.Last().DistanceFunc);
+            // test.PrepareData();
+                
+            // List<Prediction> tests = BuildPredictions(test);
+        }
+
+
+        static List<Song> ReadOriginalSongs()
         {
             SongsReader songsReader = new SongsReader($"{ResourcesRoot}/top10s.csv", ',');
             songsReader.ReadSongs();
 
-            List<Song> songs = songsReader.Songs;
+            List<Song> originalSongs = songsReader.Songs;
             
-            // ShowReadSongs(songs);
-
-            SongsAnalyzer analyzer = new SongsAnalyzer(songs);
+            // ShowReadSongs(originalSongs);
+            
+            SongsAnalyzer analyzer = new SongsAnalyzer(originalSongs);
             analyzer.Analyze();
             
             // ShowAnalyzerResults(analyzer);
             
-            SongsNormalizer normalizer = new SongsNormalizer(songs, true);
+            SongsNormalizer normalizer = new SongsNormalizer(originalSongs, true);
             normalizer.Normalize();
             
             // ShowNormalizedSongs(normalizer);
-            
-            KMeans kMeans = new KMeans(normalizer.NormalizedSongs, ClustersCount, MaxIterationsCount);
+
+            return normalizer.NormalizedSongs;
+        }
+
+
+        static DynamicKMeans BuildModel(List<Song> songs)
+        {
+            DynamicKMeans kMeans = new DynamicKMeans(songs, ClustersCount);
             // kMeans.CentroidsChooser = new PlusPlusCentroidsChooser(new SquaredEuclidDistanceFunc());
-            kMeans.DistanceFunc = new SquaredEuclidDistanceFunc();
+            // kMeans.DistanceFunc = new EuclidDistanceFunc();
+            // kMeans.MaxIterationsCount = 2;
             kMeans.Clusterize();
             
             ShowClusters(kMeans);
@@ -122,7 +162,7 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        static void ShowClusters(KMeans kMeans)
+        static void ShowClusters(BaseKMeans kMeans)
         {
             Console.WriteLine();
             Console.WriteLine($"Clusters count: {kMeans.ClustersCount}");
@@ -131,7 +171,7 @@ namespace DataMiningSpotifyTop.Source
             Console.WriteLine($"Centroids:");
             kMeans.Centroids.ForEach(Console.WriteLine);
             
-            ShowSongsByClusters(kMeans.ClusterizedSongs);
+            // ShowSongsByClusters(kMeans.ClusterizedSongs);
             ShowSongsByClusters(kMeans);
         }
 
@@ -166,7 +206,7 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        static void ShowSongsByClusters(ISongsClusterizer clusterizer)
+        static void ShowSongsByClusters(BaseKMeans clusterizer)
         {
             Console.WriteLine();
             Console.WriteLine($"Clusters size:");
@@ -174,7 +214,7 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        static void TestPredictor(ISongsClusterizer clusterizer, int experimentIndex)
+        static List<Prediction> BuildPredictions(SongSuccessPredictor predictor)
         {
             SongsReader analyzingSongsReader = new SongsReader($"{ResourcesRoot}/test_data.csv", ',');
             analyzingSongsReader.ReadSongs();
@@ -191,29 +231,12 @@ namespace DataMiningSpotifyTop.Source
             Console.WriteLine("Normalized songs:");
             ShowReadSongs(analyzingSongs);
 
-            IDistanceFunc distanceFunc = new EuclidDistanceFunc();
-            SongSuccessPredictor predictor = new SongSuccessPredictor(clusterizer, distanceFunc);
-            predictor.PrepareData();
-
-            List<Prediction> predictions = analyzingSongs.Select(song => predictor.PredictSuccess(song)).ToList();
+            List<Prediction> predictions = analyzingSongs.Select(predictor.PredictSuccess).ToList();
             
             Console.WriteLine("Predictions:");
             predictions.ForEach(Console.WriteLine);
 
-            const string parentDirectoryPath = @"Predictions";
-
-            if (!Directory.Exists(parentDirectoryPath))
-            {
-                Directory.CreateDirectory(parentDirectoryPath);
-            }
-
-            const string dateFormat = "MM.dd.yyyy_HH:mm:ss";
-            string currentDate = DateTime.Now.ToString(dateFormat);
-            string fileName = $"predictions_{experimentIndex}_{currentDate}.json";
-            string filePath = $"{parentDirectoryPath}/{fileName}";
-
-            string outputJson = JsonConvert.SerializeObject(predictions, Formatting.Indented);
-            File.AppendAllText(filePath, outputJson);
+            return predictions;
         }
     }
 }

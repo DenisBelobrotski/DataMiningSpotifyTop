@@ -17,12 +17,14 @@
         <e p="top10s.csv" t="Include" />
       </e>
       <e p="Source" t="Include">
+        <e p="BaseKMeans.cs" t="Include" />
         <e p="ClusterizedSong.cs" t="Include" />
+        <e p="DynamicKMeans.cs" t="Include" />
         <e p="EuclidDistanceFunc.cs" t="Include" />
+        <e p="FileSystemHelper.cs" t="Include" />
         <e p="ICentroidsChooser.cs" t="Include" />
         <e p="IDistanceFunc.cs" t="Include" />
-        <e p="ISongsClusterizer.cs" t="Include" />
-        <e p="KMeans.cs" t="Include" />
+        <e p="KMeansModel.cs" t="Include" />
         <e p="ListExtensions.cs" t="Include" />
         <e p="PlusPlusCentroidsChooser.cs" t="Include" />
         <e p="Prediction.cs" t="Include" />
@@ -35,6 +37,7 @@
         <e p="SongsReader.cs" t="Include" />
         <e p="SongSuccessPredictor.cs" t="Include" />
         <e p="SquaredEuclidDistanceFunc.cs" t="Include" />
+        <e p="StaticKMeans.cs" t="Include" />
       </e>
       <e p="ThirdParty" t="Include">
         <e p="CsvSerializer" t="Include">
