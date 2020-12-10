@@ -12,17 +12,27 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataMiningSpotifyTop/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataMiningSpotifyTop.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/DynamicKMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/DynamicKMeans.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/FileSystemHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/FileSystemHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/ListExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/ListExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/PlusPlusCentroidsChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PlusPlusCentroidsChooser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Prediction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Prediction.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RandomCentroidsChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RandomCentroidsChooser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Song.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SongsAnalyzer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/OriginalSongsAnalyzer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SongsNormalizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SongsNormalizer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/StaticKMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/StaticKMeans.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/BaseKMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/BaseKMeans.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ClusterizedSong.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Common/ClusterizedSong.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ConsoleHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Util/ConsoleHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/DynamicKMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/DynamicKMeans.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/EuclidDistanceFunc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Common/EuclidDistanceFunc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/FileSystemHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Util/FileSystemHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ICentroidsChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/ICentroidsChooser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/IDistanceFunc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Common/IDistanceFunc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/KMeansModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/KMeansModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/ListExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Util/ListExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/OriginalSongsAnalyzer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PreProcess/OriginalSongsAnalyzer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/PlusPlusCentroidsChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/PlusPlusCentroidsChooser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Prediction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PostProcess/Prediction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RandomCentroidsChooser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/RandomCentroidsChooser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Common/Song.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SongSuccessPredictor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PostProcess/SongSuccessPredictor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SongsFileCleaner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PreProcess/SongsFileCleaner.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SongsNormalizer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PreProcess/SongsNormalizer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SongsReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/PreProcess/SongsReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/SquaredEuclidDistanceFunc.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Common/SquaredEuclidDistanceFunc.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/StaticKMeans.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Process/StaticKMeans.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +158,7 @@
       <workItem from="1607247590339" duration="2995000" />
       <workItem from="1607251011955" duration="11137000" />
       <workItem from="1607356509038" duration="9805000" />
-      <workItem from="1607612598561" duration="6756000" />
+      <workItem from="1607612598561" duration="7200000" />
     </task>
     <servers />
   </component>
@@ -186,26 +196,26 @@
     </state>
     <state width="451" height="464" key="DebuggerActiveHint/0.0.1536.834@0.0.1536.834" timestamp="1606425987341" />
     <state width="752" height="744" key="DebuggerActiveHint/0.23.2560.1337@0.23.2560.1337" timestamp="1607623798870" />
-    <state width="2518" height="375" key="GridCell.Tab.0.bottom" timestamp="1607627973587">
+    <state width="2518" height="375" key="GridCell.Tab.0.bottom" timestamp="1607628676534">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1607249948264" />
-    <state width="2518" height="375" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607627973587" />
-    <state width="2518" height="375" key="GridCell.Tab.0.center" timestamp="1607627973586">
+    <state width="2518" height="375" key="GridCell.Tab.0.bottom/0.23.2560.1337@0.23.2560.1337" timestamp="1607628676534" />
+    <state width="2518" height="375" key="GridCell.Tab.0.center" timestamp="1607628676533">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607627973586" />
-    <state width="2518" height="375" key="GridCell.Tab.0.left" timestamp="1607627973585">
+    <state width="2518" height="375" key="GridCell.Tab.0.center/0.23.2560.1337@0.23.2560.1337" timestamp="1607628676533" />
+    <state width="2518" height="375" key="GridCell.Tab.0.left" timestamp="1607628676533">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607627973585" />
-    <state width="2518" height="375" key="GridCell.Tab.0.right" timestamp="1607627973586">
+    <state width="2518" height="375" key="GridCell.Tab.0.left/0.23.2560.1337@0.23.2560.1337" timestamp="1607628676533" />
+    <state width="2518" height="375" key="GridCell.Tab.0.right" timestamp="1607628676534">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
     <state width="1493" height="206" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1607249948263" />
-    <state width="2518" height="375" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607627973586" />
+    <state width="2518" height="375" key="GridCell.Tab.0.right/0.23.2560.1337@0.23.2560.1337" timestamp="1607628676534" />
     <state width="2518" height="487" key="GridCell.Tab.1.bottom" timestamp="1607627930549">
       <screen x="0" y="23" width="2560" height="1337" />
     </state>
