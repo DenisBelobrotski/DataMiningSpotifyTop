@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using DataMiningSpotifyTop.Source.Common;
+using DataMiningSpotifyTop.Source.Util;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Process
 {
     public class RandomCentroidsChooser : ICentroidsChooser
     {

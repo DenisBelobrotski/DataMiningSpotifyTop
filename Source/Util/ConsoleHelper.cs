@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataMiningSpotifyTop.Source.Common;
+using DataMiningSpotifyTop.Source.PreProcess;
+using DataMiningSpotifyTop.Source.Process;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Util
 {
     public static class ConsoleHelper
     {

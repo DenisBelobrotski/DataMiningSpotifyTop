@@ -2,7 +2,7 @@ using System;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Common
 {
     public class Song
     {

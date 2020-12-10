@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using DataMiningSpotifyTop.Source.Common;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Process
 {
     public class StaticKMeans : BaseKMeans
     {

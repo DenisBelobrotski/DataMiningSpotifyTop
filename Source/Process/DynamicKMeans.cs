@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using DataMiningSpotifyTop.Source.Common;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Process
 {
     public class DynamicKMeans : BaseKMeans
     {

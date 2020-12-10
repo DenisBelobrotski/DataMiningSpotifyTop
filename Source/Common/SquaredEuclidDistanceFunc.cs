@@ -1,4 +1,4 @@
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Common
 {
     public class SquaredEuclidDistanceFunc : IDistanceFunc
     {

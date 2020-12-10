@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DataMiningSpotifyTop.Source.PostProcess;
+using DataMiningSpotifyTop.Source.Process;
 using Newtonsoft.Json;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Util
 {
     public static class FileSystemHelper
     {

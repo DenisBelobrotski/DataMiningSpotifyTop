@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.Util
 {
     public static class ListExtensions
     {

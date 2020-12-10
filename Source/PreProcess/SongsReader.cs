@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CsvSerialization;
+using DataMiningSpotifyTop.Source.Common;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.PreProcess
 {
     public class SongsReader
     {

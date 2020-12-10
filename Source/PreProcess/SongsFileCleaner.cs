@@ -1,4 +1,4 @@
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.PreProcess
 {
     public static class SongsFileCleaner
     {

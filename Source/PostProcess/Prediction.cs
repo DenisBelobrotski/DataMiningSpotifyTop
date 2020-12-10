@@ -1,7 +1,8 @@
 using System.Collections.Generic;
+using DataMiningSpotifyTop.Source.Common;
 using Newtonsoft.Json;
 
-namespace DataMiningSpotifyTop.Source
+namespace DataMiningSpotifyTop.Source.PostProcess
 {
     public class Prediction
     {
