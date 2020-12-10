@@ -12,7 +12,13 @@ namespace DataMiningSpotifyTop.Source
         const string ModelsDirectoryPath = @"Models";
 
 
-        static string CurrentDate => DateTime.Now.ToString("dd.MM.yyyy_HH.mm.ss.fff");
+        static string CurrentDate => GetFormattedDate(DateTime.Now);
+
+
+        public static string GetFormattedDate(DateTime dateTime)
+        {
+            return dateTime.ToString("dd.MM.yyyy_HH.mm.ss.fff");
+        }
 
 
         public static void SaveObject(string filePath, object data)
@@ -30,28 +36,60 @@ namespace DataMiningSpotifyTop.Source
         }
 
 
-        public static void SavePredictions(List<Prediction> predictions)
+        public static void DeleteDirectory(string target_dir)
+        {
+            string[] files = Directory.GetFiles(target_dir);
+            string[] dirs = Directory.GetDirectories(target_dir);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                DeleteDirectory(dir);
+            }
+
+            Directory.Delete(target_dir, false);
+        }
+
+
+        public static void ClearPredictions()
+        {
+            if (Directory.Exists(PredictionsDirectoryPath))
+            {
+                DeleteDirectory(PredictionsDirectoryPath);
+            }
+        }
+
+
+        public static void SavePredictions(List<Prediction> predictions, DateTime dateTime, int order)
         {
             if (!Directory.Exists(PredictionsDirectoryPath))
             {
                 Directory.CreateDirectory(PredictionsDirectoryPath);
             }
 
-            string fileName = $"predictions_{CurrentDate}.json";
+            string date = GetFormattedDate(dateTime);
+            string fileName = $"predictions***ord_{order}***date_{date}.json";
             string filePath = $"{PredictionsDirectoryPath}/{fileName}";
 
             SaveObject(filePath, predictions);
         }
 
 
-        public static void SaveKMeansModel(KMeansModel model)
+        public static void SaveKMeansModel(KMeansModel model, DateTime dateTime, int order)
         {
             if (!Directory.Exists(ModelsDirectoryPath))
             {
                 Directory.CreateDirectory(ModelsDirectoryPath);
             }
 
-            string fileName = $"k_means_model_{CurrentDate}.json";
+            int clustersCount = model.Centroids.Count;
+            string date = GetFormattedDate(dateTime);
+            string fileName = $"model_k_means***ord_{order}***k_{clustersCount}***date_{date}.json";
             string filePath = $"{ModelsDirectoryPath}/{fileName}";
 
             SaveObject(filePath, model);

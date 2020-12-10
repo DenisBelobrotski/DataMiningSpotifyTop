@@ -9,14 +9,14 @@ namespace DataMiningSpotifyTop.Source
 
         Song MinValues { get; }
         Song MaxValues { get; }
-        
+
         public List<Song> SourceSongs { get; }
         public List<Song> NormalizedSongs { get; private set; }
 
         #endregion
-        
-        
-        
+
+
+
         #region Object lifecycle
 
         public SongsNormalizer(List<Song> sourceSongs, bool isPercentageValues)
@@ -34,7 +34,7 @@ namespace DataMiningSpotifyTop.Source
                 Speechiness = 0,
                 Popularity = 0,
             };
-            
+
             MaxValues = new Song
             {
                 BeatsPerMinute = 300,

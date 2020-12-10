@@ -17,7 +17,7 @@ namespace DataMiningSpotifyTop.Source
 
         public override int ClustersCount => clustersCount;
 
-        KMeansModel Model { get; }
+        public KMeansModel Model { get; }
 
         #endregion
 

@@ -64,6 +64,7 @@ namespace DataMiningSpotifyTop.Source
                 if (temporarySum > randomSum)
                 {
                     nextCentroid = songs[pointIndex];
+
                     break;
                 }
             }

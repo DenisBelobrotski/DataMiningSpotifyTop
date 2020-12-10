@@ -9,7 +9,7 @@ namespace DataMiningSpotifyTop.Source
         #region Fields
 
         // not important
-        [DataMember(Name = "id", Order = 0)] 
+        [DataMember(Name = "id", Order = 0)]
         public string Id { get; set; }
 
         // not important
@@ -25,28 +25,28 @@ namespace DataMiningSpotifyTop.Source
         public string Genre { get; set; }
 
         // not important
-        [DataMember(Name = "year", Order = 4)] 
+        [DataMember(Name = "year", Order = 4)]
         public int Year { get; set; }
 
-        [DataMember(Name = "bpm", Order = 5)] 
+        [DataMember(Name = "bpm", Order = 5)]
         public double BeatsPerMinute { get; set; }
 
-        [DataMember(Name = "nrgy", Order = 6)] 
+        [DataMember(Name = "nrgy", Order = 6)]
         public double Energy { get; set; }
 
-        [DataMember(Name = "dnce", Order = 7)] 
+        [DataMember(Name = "dnce", Order = 7)]
         public double Danceability { get; set; }
 
-        [DataMember(Name = "dB", Order = 8)] 
+        [DataMember(Name = "dB", Order = 8)]
         public double Loudness { get; set; }
 
-        [DataMember(Name = "live", Order = 9)] 
+        [DataMember(Name = "live", Order = 9)]
         public double Liveness { get; set; }
 
-        [DataMember(Name = "val", Order = 10)] 
+        [DataMember(Name = "val", Order = 10)]
         public double Valence { get; set; }
 
-        [DataMember(Name = "dur", Order = 11)] 
+        [DataMember(Name = "dur", Order = 11)]
         public double Duration { get; set; }
 
         [DataMember(Name = "acous", Order = 12)]
@@ -56,7 +56,7 @@ namespace DataMiningSpotifyTop.Source
         public double Speechiness { get; set; }
 
         // not important
-        [DataMember(Name = "pop", Order = 14)] 
+        [DataMember(Name = "pop", Order = 14)]
         public double Popularity { get; set; }
 
         #endregion
@@ -143,8 +143,8 @@ namespace DataMiningSpotifyTop.Source
             Speechiness += value.Speechiness;
             // Popularity += value.Popularity;
         }
-        
-        
+
+
         public void Divide(double divider)
         {
             BeatsPerMinute /= divider;

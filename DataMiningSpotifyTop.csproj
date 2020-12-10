@@ -55,10 +55,11 @@
         <Compile Include="Source\IDistanceFunc.cs" />
         <Compile Include="Source\KMeansModel.cs" />
         <Compile Include="Source\ListExtensions.cs" />
+        <Compile Include="Source\ConsoleHelper.cs" />
         <Compile Include="Source\PlusPlusCentroidsChooser.cs" />
         <Compile Include="Source\Prediction.cs" />
         <Compile Include="Source\RandomCentroidsChooser.cs" />
-        <Compile Include="Source\SongsAnalyzer.cs" />
+        <Compile Include="Source\OriginalSongsAnalyzer.cs" />
         <Compile Include="Source\DynamicKMeans.cs" />
         <Compile Include="Source\SongsFileCleaner.cs" />
         <Compile Include="Source\SongsNormalizer.cs" />

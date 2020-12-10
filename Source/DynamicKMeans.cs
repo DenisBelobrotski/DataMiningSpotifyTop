@@ -24,7 +24,7 @@ namespace DataMiningSpotifyTop.Source
             get => centroidsChooser ?? (centroidsChooser = new RandomCentroidsChooser());
             set => centroidsChooser = value;
         }
-        
+
         public KMeansModel Model => new KMeansModel
         {
             Centroids = new List<Song>(Centroids),

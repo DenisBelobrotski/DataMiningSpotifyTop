@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DataMiningSpotifyTop.Source
 {
-    public class SongsAnalyzer
+    public class OriginalSongsAnalyzer
     {
         #region Properties
 
@@ -24,7 +24,7 @@ namespace DataMiningSpotifyTop.Source
 
         #region Object lifecycle
 
-        public SongsAnalyzer(List<Song> songs)
+        public OriginalSongsAnalyzer(List<Song> songs)
         {
             Songs = songs;
         }
@@ -104,7 +104,7 @@ namespace DataMiningSpotifyTop.Source
 
             if (!songsByGenre.TryGetValue(genre, out List<Song> genreSongs))
             {
-                songsByGenre[genre] = new List<Song>{ song };
+                songsByGenre[genre] = new List<Song> { song };
             }
             else
             {
@@ -119,7 +119,7 @@ namespace DataMiningSpotifyTop.Source
 
             if (!SongsByYear.TryGetValue(year, out List<Song> yearSongs))
             {
-                songsByYear[year] = new List<Song>{ song };
+                songsByYear[year] = new List<Song> { song };
             }
             else
             {

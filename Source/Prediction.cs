@@ -8,15 +8,15 @@ namespace DataMiningSpotifyTop.Source
         #region Properties
 
         public int ClusterIndex { get; set; }
-        
+
         public int ClusterSize { get; set; }
 
         public double ClusterPortion { get; set; }
-        
+
         public double CentroidDistance { get; set; }
-        
+
         public List<int> ClusterSizes { get; set; }
-        
+
         public List<double> ClusterPortions { get; set; }
 
         public List<double> CentroidDistances { get; set; }
