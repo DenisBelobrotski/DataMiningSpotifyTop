@@ -18,6 +18,7 @@
       </e>
       <e p="Source" t="Include">
         <e p="Common" t="Include">
+          <e p="AnalyzedSong.cs" t="Include" />
           <e p="ClusterizedSong.cs" t="Include" />
           <e p="EuclidDistanceFunc.cs" t="Include" />
           <e p="IDistanceFunc.cs" t="Include" />
@@ -25,6 +26,7 @@
           <e p="SquaredEuclidDistanceFunc.cs" t="Include" />
         </e>
         <e p="PostProcess" t="Include">
+          <e p="ModelAnalyzer.cs" t="Include" />
           <e p="Prediction.cs" t="Include" />
           <e p="SongSuccessPredictor.cs" t="Include" />
         </e>
