@@ -12,14 +12,8 @@ namespace DataMiningSpotifyTop.Source.Process
 
             for (int i = 0; i < clustersCount; i++)
             {
-                string stub = $"centroid_{i}";
-
-                Song centroid = songs.RandomObject().Clone(stub);
-                centroid.Title = stub;
-                centroid.Artist = stub;
-                centroid.Genre = stub;
-                centroid.Year = 0;
-                centroid.Popularity = 0.0f;
+                string id = $"centroid_{i}";
+                Song centroid = songs.RandomObject().CloneCleared(id);
 
                 centroids.Add(centroid);
             }

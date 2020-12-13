@@ -36,7 +36,6 @@ namespace DataMiningSpotifyTop.Source
             {
                 ModelAnalyzer analyzer = new ModelAnalyzer(model);
                 analyzer.Analyze();
-                analyzer.SortAnalyzedSongs();
 
                 return analyzer;
             }).ToList();

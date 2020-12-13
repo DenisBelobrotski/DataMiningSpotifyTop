@@ -11,12 +11,14 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         #region Properties
 
         BaseKMeans Model { get; }
-        
+
         public List<AnalyzedSong> AnalyzedSongs { get; private set; }
-        
-        public List<double> IntraClusterMeanDistances { get; private set; }
-        
+
+        public List<double> IntraClusterDistances { get; private set; }
+
         public double IntraClusterMeanDistance { get; private set; }
+
+        public double InterClusterMeanDistance { get; private set; }
 
         #endregion
 
@@ -37,25 +39,33 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
         public void Analyze()
         {
+            AnalyzeIntraClusterDistance();
+            SortAnalyzedSongs();
+            AnalyzeInterClusterDistance();
+        }
+
+
+        void AnalyzeIntraClusterDistance()
+        {
             List<Song> centroids = Model.Centroids;
-            
-            IntraClusterMeanDistances = new List<double>(centroids.Capacity);
+
+            IntraClusterDistances = new List<double>(centroids.Capacity);
             IntraClusterMeanDistance = 0.0;
-            
+
             List<int> clusterCounts = new List<int>(centroids.Capacity);
             int songsCount = 0;
 
             for (int i = 0; i < centroids.Count; i++)
             {
-                IntraClusterMeanDistances.Add(0.0);
+                IntraClusterDistances.Add(0.0);
                 clusterCounts.Add(0);
             }
-            
+
             AnalyzedSongs = Model.ClusterizedSongs.Select(song =>
             {
                 double distance = Model.DistanceFunc.GetDistance(song.Song, centroids[song.ClusterIndex]);
                 int index = song.ClusterIndex;
-                
+
                 AnalyzedSong analyzedSong = new AnalyzedSong
                 {
                     AssociatedSong = song.Song,
@@ -63,7 +73,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                     CentroidDistance = distance,
                 };
 
-                IntraClusterMeanDistances[index] += distance;
+                IntraClusterDistances[index] += distance;
                 IntraClusterMeanDistance += distance;
 
                 clusterCounts[index] += 1;
@@ -71,17 +81,17 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
                 return analyzedSong;
             }).ToList();
-            
-            for (int i = 0; i < IntraClusterMeanDistances.Count; i++)
+
+            for (int i = 0; i < IntraClusterDistances.Count; i++)
             {
-                IntraClusterMeanDistances[i] /= clusterCounts[i];
+                IntraClusterDistances[i] /= clusterCounts[i];
             }
 
             IntraClusterMeanDistance /= songsCount;
         }
 
 
-        public void SortAnalyzedSongs()
+        void SortAnalyzedSongs()
         {
             AnalyzedSongs.Sort((left, right) =>
             {
@@ -94,6 +104,40 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
                 return comparisonResult;
             });
+        }
+
+
+        void AnalyzeInterClusterDistance()
+        {
+            List<Song> centroids = Model.Centroids;
+            int clustersCount = centroids.Count;
+
+            if (clustersCount == 0)
+            {
+                throw new ArgumentException("No clusters.");
+            }
+
+            const string id = "centroids_center";
+            Song centroidsCenter = centroids[0].CloneCleared(id);
+
+            for (int i = 1; i < clustersCount; i++)
+            {
+                Song centroid = centroids[i];
+                centroidsCenter.Add(centroid);
+            }
+            
+            centroidsCenter.Divide(clustersCount);
+
+            IDistanceFunc distanceFunc = Model.DistanceFunc;
+
+            InterClusterMeanDistance = 0.0;
+
+            foreach (Song centroid in centroids)
+            {
+                InterClusterMeanDistance += distanceFunc.GetDistance(centroid, centroidsCenter);
+            }
+
+            InterClusterMeanDistance /= clustersCount;
         }
 
         #endregion

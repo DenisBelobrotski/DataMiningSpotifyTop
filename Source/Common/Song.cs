@@ -100,6 +100,19 @@ namespace DataMiningSpotifyTop.Source.Common
         }
 
 
+        public Song CloneCleared(string id)
+        {
+            Song clone = Clone(id);
+            clone.Title = id;
+            clone.Artist = id;
+            clone.Genre = id;
+            clone.Year = 0;
+            clone.Popularity = 0.0f;
+
+            return clone;
+        }
+
+
         public void Normalize(Song min, Song max)
         {
             BeatsPerMinute = NormalizedValue(BeatsPerMinute, min.BeatsPerMinute, max.BeatsPerMinute);
