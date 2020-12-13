@@ -39,8 +39,9 @@ namespace DataMiningSpotifyTop.Source
 
                 return analyzer;
             }).ToList();
-
-            // TODO: analyze models
+            
+            AnalysisDrawer drawer = new AnalysisDrawer(analyzers);
+            drawer.CreatePlots();
 
             List<Song> analyzingSongs = GetAnalyzingSongs();
 

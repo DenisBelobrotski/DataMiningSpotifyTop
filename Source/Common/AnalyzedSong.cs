@@ -7,7 +7,7 @@ namespace DataMiningSpotifyTop.Source.Common
         public Song AssociatedSong { get; set; }
 
         public int ClusterIndex { get; set; }
-        
+
         public double CentroidDistance { get; set; }
 
         #endregion

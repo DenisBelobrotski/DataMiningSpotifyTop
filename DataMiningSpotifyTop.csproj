@@ -36,12 +36,17 @@
           <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
           <Private>True</Private>
         </Reference>
+        <Reference Include="ScottPlot, Version=3.1.6.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>packages\ScottPlot.3.1.6\lib\net45\ScottPlot.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
         <Reference Include="System.Data.DataSetExtensions" />
         <Reference Include="System.Data.Entity" />
         <Reference Include="System.Data.Linq" />
+        <Reference Include="System.Drawing" />
         <Reference Include="System.Runtime.Serialization" />
         <Reference Include="System.Xml" />
     </ItemGroup>
@@ -53,6 +58,7 @@
         <Compile Include="Source\Common\IDistanceFunc.cs" />
         <Compile Include="Source\Common\Song.cs" />
         <Compile Include="Source\Common\SquaredEuclidDistanceFunc.cs" />
+        <Compile Include="Source\PostProcess\AnalysisDrawer.cs" />
         <Compile Include="Source\PostProcess\ModelAnalyzer.cs" />
         <Compile Include="Source\PostProcess\Prediction.cs" />
         <Compile Include="Source\PostProcess\SongSuccessPredictor.cs" />

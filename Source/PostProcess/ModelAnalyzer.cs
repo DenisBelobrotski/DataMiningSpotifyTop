@@ -10,7 +10,9 @@ namespace DataMiningSpotifyTop.Source.PostProcess
     {
         #region Properties
 
-        BaseKMeans Model { get; }
+        public BaseKMeans Model { get; }
+
+        public int ClustersCount => Model.ClustersCount;
 
         public List<AnalyzedSong> AnalyzedSongs { get; private set; }
 
@@ -125,7 +127,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                 Song centroid = centroids[i];
                 centroidsCenter.Add(centroid);
             }
-            
+
             centroidsCenter.Divide(clustersCount);
 
             IDistanceFunc distanceFunc = Model.DistanceFunc;
