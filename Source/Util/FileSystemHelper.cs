@@ -114,6 +114,11 @@ namespace DataMiningSpotifyTop.Source.Util
             }
 
             List<string> paths = Directory.GetFiles(ModelsDirectoryPath).ToList();
+            paths.Sort();
+
+            Console.WriteLine();
+            Console.WriteLine("Read models order:");
+            paths.ForEach(Console.WriteLine);
 
             foreach (string path in paths)
             {

@@ -55,7 +55,8 @@ namespace DataMiningSpotifyTop.Source.Process
             PerformInitialIteration();
             RecalculateCentroids();
 
-            Console.WriteLine($"K-means initial iteration completed.");
+            Console.WriteLine();
+            Console.WriteLine("K-means initial iteration completed.");
 
             bool songMovedBetweenClusters = true;
 
