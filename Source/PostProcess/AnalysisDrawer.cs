@@ -9,9 +9,9 @@ namespace DataMiningSpotifyTop.Source.PostProcess
     {
         #region Fields
 
-        static readonly Color InterClusterDistanceColor = Color.DarkGoldenrod;
-        static readonly Color InterClusterMeanDistanceColor = Color.Magenta;
+        static readonly Color IntraClusterDistanceColor = Color.DarkGoldenrod;
         static readonly Color ClusterDividerColor = Color.Red;
+        static readonly Color IntraClustersMeanDistanceColor = Color.Magenta;
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                 if (currentClusterIndex != point.ClusterIndex)
                 {
                     double value = (i + (i - 1)) / 2.0;
-                    intraClusterPlot.PlotVLine(value);
+                    intraClusterPlot.PlotVLine(value, ClusterDividerColor);
                 }
 
                 xValues[i] = i;
@@ -83,8 +83,8 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                 currentClusterIndex = point.ClusterIndex;
             }
 
-            intraClusterPlot.PlotScatter(xValues, yValues, InterClusterDistanceColor);
-            intraClusterPlot.SaveFig("test_plot");
+            intraClusterPlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
+            intraClusterPlot.PlotHLine(analyzer.IntraClusterMeanDistance, IntraClustersMeanDistanceColor);
 
             return intraClusterPlot;
         }

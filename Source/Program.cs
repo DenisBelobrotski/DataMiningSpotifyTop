@@ -42,6 +42,7 @@ namespace DataMiningSpotifyTop.Source
             
             AnalysisDrawer drawer = new AnalysisDrawer(analyzers);
             drawer.CreatePlots();
+            FileSystemHelper.SaveAnalysis(drawer, runDate);
 
             List<Song> analyzingSongs = GetAnalyzingSongs();
 

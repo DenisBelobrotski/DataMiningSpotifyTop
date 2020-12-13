@@ -5,6 +5,7 @@ using System.Linq;
 using DataMiningSpotifyTop.Source.PostProcess;
 using DataMiningSpotifyTop.Source.Process;
 using Newtonsoft.Json;
+using ScottPlot;
 
 namespace DataMiningSpotifyTop.Source.Util
 {
@@ -12,6 +13,7 @@ namespace DataMiningSpotifyTop.Source.Util
     {
         const string PredictionsDirectoryPath = @"Predictions";
         const string ModelsDirectoryPath = @"Models";
+        const string AnalysisDirectoryPath = @"Analysis";
 
 
         static string CurrentDate => GetFormattedDate(DateTime.Now);
@@ -75,7 +77,7 @@ namespace DataMiningSpotifyTop.Source.Util
             }
 
             string date = GetFormattedDate(dateTime);
-            string fileName = $"predictions***ord_{order}***date_{date}.json";
+            string fileName = $"(predictions)(ord_{order})(date_{date}).json";
             string filePath = $"{PredictionsDirectoryPath}/{fileName}";
 
             SaveObject(filePath, predictions);
@@ -91,7 +93,7 @@ namespace DataMiningSpotifyTop.Source.Util
 
             int clustersCount = model.Centroids.Count;
             string date = GetFormattedDate(dateTime);
-            string fileName = $"model_k_means***ord_{order}***k_{clustersCount}***date_{date}.json";
+            string fileName = $"(model_k_means)(ord_{order})(k_{clustersCount})(date_{date}).json";
             string filePath = $"{ModelsDirectoryPath}/{fileName}";
 
             SaveObject(filePath, model);
@@ -134,6 +136,36 @@ namespace DataMiningSpotifyTop.Source.Util
             }
 
             return models;
+        }
+
+
+        static void CheckAnalysisFolder()
+        {
+            if (Directory.Exists(AnalysisDirectoryPath))
+            {
+                DeleteDirectory(AnalysisDirectoryPath);
+            }
+            
+            Directory.CreateDirectory(AnalysisDirectoryPath);
+        }
+
+
+        public static void SaveAnalysis(AnalysisDrawer drawer, DateTime dateTime)
+        {
+            CheckAnalysisFolder();
+            
+            string date = GetFormattedDate(dateTime);
+
+            for (int i = 0; i < drawer.IntraClusterPlots.Count; i++)
+            {
+                string fileName = $"(model_analysis)(ord_{i})(date_{date}).png";
+                string filePath = $"{AnalysisDirectoryPath}/{fileName}";
+                drawer.IntraClusterPlots[i].SaveFig(filePath);
+            }
+            
+            // TODO
+            // drawer.IntraClusterCommonPlot.SaveFig();
+            // drawer.InterClusterPlot.SaveFig();
         }
     }
 }
