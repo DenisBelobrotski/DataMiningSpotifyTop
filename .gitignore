@@ -364,3 +364,4 @@ FodyWeavers.xsd
 # Rider
 riderModule.iml
 /_ReSharper.Caches/
+/.idea/
