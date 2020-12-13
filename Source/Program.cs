@@ -32,6 +32,15 @@ namespace DataMiningSpotifyTop.Source
 
             List<StaticKMeans> models = ReadAllModels(songs);
 
+            List<ModelAnalyzer> analyzers = models.Select(model =>
+            {
+                ModelAnalyzer analyzer = new ModelAnalyzer(model);
+                analyzer.Analyze();
+                analyzer.SortAnalyzedSongs();
+
+                return analyzer;
+            }).ToList();
+
             // TODO: analyze models
 
             List<Song> analyzingSongs = GetAnalyzingSongs();
@@ -63,19 +72,19 @@ namespace DataMiningSpotifyTop.Source
             songsReader.ReadSongs();
 
             List<Song> songs = songsReader.Songs;
-            Console.WriteLine("Read songs:");
-            ConsoleHelper.ShowReadSongs(songs);
+            // Console.WriteLine("Read songs:");
+            // ConsoleHelper.ShowReadSongs(songs);
 
             OriginalSongsAnalyzer analyzer = new OriginalSongsAnalyzer(songs);
             analyzer.Analyze();
-            ConsoleHelper.ShowAnalyzerResults(analyzer);
+            // ConsoleHelper.ShowAnalyzerResults(analyzer);
 
             SongsNormalizer normalizer = new SongsNormalizer(songs, true);
             normalizer.Normalize();
             songs = normalizer.NormalizedSongs;
 
-            Console.WriteLine("Normalized songs:");
-            ConsoleHelper.ShowReadSongs(songs);
+            // Console.WriteLine("Normalized songs:");
+            // ConsoleHelper.ShowReadSongs(songs);
 
             return songs;
         }
@@ -85,7 +94,7 @@ namespace DataMiningSpotifyTop.Source
         {
             DynamicKMeans kMeans = new DynamicKMeans(songs, clustersCount);
             kMeans.Clusterize();
-            ConsoleHelper.ShowClusters(kMeans);
+            // ConsoleHelper.ShowClusters(kMeans);
 
             return kMeans;
         }
@@ -110,15 +119,15 @@ namespace DataMiningSpotifyTop.Source
 
             List<Song> analyzingSongs = analyzingSongsReader.Songs;
 
-            Console.WriteLine("Read songs:");
-            ConsoleHelper.ShowReadSongs(analyzingSongs);
+            // Console.WriteLine("Read songs:");
+            // ConsoleHelper.ShowReadSongs(analyzingSongs);
 
             SongsNormalizer normalizer = new SongsNormalizer(analyzingSongs, false);
             normalizer.Normalize();
             analyzingSongs = normalizer.NormalizedSongs;
 
-            Console.WriteLine("Normalized songs:");
-            ConsoleHelper.ShowReadSongs(analyzingSongs);
+            // Console.WriteLine("Normalized songs:");
+            // ConsoleHelper.ShowReadSongs(analyzingSongs);
 
             return analyzingSongs;
         }
@@ -131,8 +140,8 @@ namespace DataMiningSpotifyTop.Source
 
             List<Prediction> predictions = analyzingSongs.Select(predictor.PredictSuccess).ToList();
 
-            Console.WriteLine("Predictions:");
-            predictions.ForEach(Console.WriteLine);
+            // Console.WriteLine("Predictions:");
+            // predictions.ForEach(Console.WriteLine);
 
             return predictions;
         }

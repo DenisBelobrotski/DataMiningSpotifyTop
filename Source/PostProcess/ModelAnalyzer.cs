@@ -14,9 +14,9 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         
         public List<AnalyzedSong> AnalyzedSongs { get; private set; }
         
-        public List<double> MeanDistances { get; private set; }
+        public List<double> IntraClusterMeanDistances { get; private set; }
         
-        public double MeanDistance { get; private set; }
+        public double IntraClusterMeanDistance { get; private set; }
 
         #endregion
 
@@ -39,15 +39,15 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         {
             List<Song> centroids = Model.Centroids;
             
-            MeanDistances = new List<double>(centroids.Capacity);
-            MeanDistance = 0.0;
+            IntraClusterMeanDistances = new List<double>(centroids.Capacity);
+            IntraClusterMeanDistance = 0.0;
             
             List<int> clusterCounts = new List<int>(centroids.Capacity);
             int songsCount = 0;
 
             for (int i = 0; i < centroids.Count; i++)
             {
-                MeanDistances.Add(0.0);
+                IntraClusterMeanDistances.Add(0.0);
                 clusterCounts.Add(0);
             }
             
@@ -63,8 +63,8 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                     CentroidDistance = distance,
                 };
 
-                MeanDistances[index] += distance;
-                MeanDistance += distance;
+                IntraClusterMeanDistances[index] += distance;
+                IntraClusterMeanDistance += distance;
 
                 clusterCounts[index] += 1;
                 songsCount += 1;
@@ -72,12 +72,12 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                 return analyzedSong;
             }).ToList();
             
-            for (int i = 0; i < MeanDistances.Count; i++)
+            for (int i = 0; i < IntraClusterMeanDistances.Count; i++)
             {
-                MeanDistances[i] /= clusterCounts[i];
+                IntraClusterMeanDistances[i] /= clusterCounts[i];
             }
 
-            MeanDistance /= songsCount;
+            IntraClusterMeanDistance /= songsCount;
         }
 
 
@@ -85,7 +85,14 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         {
             AnalyzedSongs.Sort((left, right) =>
             {
-                throw new NotImplementedException();
+                int comparisonResult = left.ClusterIndex.CompareTo(right.ClusterIndex);
+
+                if (comparisonResult == 0)
+                {
+                    comparisonResult = left.CentroidDistance.CompareTo(right.CentroidDistance);
+                }
+
+                return comparisonResult;
             });
         }
 
