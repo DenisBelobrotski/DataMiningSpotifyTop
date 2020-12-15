@@ -10,7 +10,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         #region Fields
 
         static readonly Color IntraClusterDistanceColor = Color.DarkGoldenrod;
-        static readonly Color ClusterDividerColor = Color.Red;
+        static readonly Color VerticalDividerColor = Color.Red;
         static readonly Color IntraClustersMeanDistanceColor = Color.Magenta;
 
         #endregion
@@ -54,6 +54,12 @@ namespace DataMiningSpotifyTop.Source.PostProcess
                 Plot intraClusterPlot = CreateIntraClusterPlot(modelAnalyzer);
                 IntraClusterPlots.Add(intraClusterPlot);
             }
+
+            List<ModelAnalyzer> sortedAnalyzers = new List<ModelAnalyzer>(Analyzers);
+            sortedAnalyzers.Sort((left, right) => left.ClustersCount.CompareTo(right.ClustersCount));
+
+            IntraClusterCommonPlot = CreateIntraClusterCommonPlot(sortedAnalyzers);
+            InterClusterPlot = CreateInterClusterPlot(sortedAnalyzers);
         }
 
 
@@ -71,14 +77,15 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             {
                 AnalyzedSong point = analyzer.AnalyzedSongs[i];
 
+                xValues[i] = i;
+                yValues[i] = point.CentroidDistance;
+
                 if (currentClusterIndex != point.ClusterIndex)
                 {
                     double value = (i + (i - 1)) / 2.0;
-                    intraClusterPlot.PlotVLine(value, ClusterDividerColor);
+                    string label = $"cluster {currentClusterIndex}";
+                    intraClusterPlot.PlotVLine(value, VerticalDividerColor, label: label);
                 }
-
-                xValues[i] = i;
-                yValues[i] = point.CentroidDistance;
 
                 currentClusterIndex = point.ClusterIndex;
             }
@@ -87,6 +94,72 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             intraClusterPlot.PlotHLine(analyzer.IntraClusterMeanDistance, IntraClustersMeanDistanceColor);
 
             return intraClusterPlot;
+        }
+
+
+        Plot CreateIntraClusterCommonPlot(List<ModelAnalyzer> analyzers)
+        {
+            Plot intraClusterCommonPlot = new Plot();
+
+            int pointsCount = analyzers.Count;
+            double[] xValues = new double[pointsCount];
+            double[] yValues = new double[pointsCount];
+
+            int currentClustersCount = analyzers[0].ClustersCount;
+
+            for (int i = 0; i < pointsCount; i++)
+            {
+                ModelAnalyzer analyzer = analyzers[i];
+
+                xValues[i] = i;
+                yValues[i] = analyzer.IntraClusterMeanDistance;
+
+                if (currentClustersCount != analyzer.ClustersCount)
+                {
+                    double value = (i + (i - 1)) / 2.0;
+                    string label = $"clusters count {currentClustersCount}";
+                    intraClusterCommonPlot.PlotVLine(value, VerticalDividerColor, label: label);
+                }
+
+                currentClustersCount = analyzer.ClustersCount;
+            }
+            
+            intraClusterCommonPlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
+
+            return intraClusterCommonPlot;
+        }
+
+
+        Plot CreateInterClusterPlot(List<ModelAnalyzer> analyzers)
+        {
+            Plot interClusterPlot = new Plot();
+
+            int pointsCount = analyzers.Count;
+            double[] xValues = new double[pointsCount];
+            double[] yValues = new double[pointsCount];
+
+            int currentClustersCount = analyzers[0].ClustersCount;
+
+            for (int i = 0; i < pointsCount; i++)
+            {
+                ModelAnalyzer analyzer = analyzers[i];
+
+                xValues[i] = i;
+                yValues[i] = analyzer.InterClusterMeanDistance;
+
+                if (currentClustersCount != analyzer.ClustersCount)
+                {
+                    double value = (i + (i - 1)) / 2.0;
+                    string label = $"clusters count {currentClustersCount}";
+                    interClusterPlot.PlotVLine(value, VerticalDividerColor, label: label);
+                }
+
+                currentClustersCount = analyzer.ClustersCount;
+            }
+            
+            interClusterPlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
+
+            return interClusterPlot;
         }
 
         #endregion

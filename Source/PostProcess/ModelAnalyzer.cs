@@ -21,6 +21,8 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         public double IntraClusterMeanDistance { get; private set; }
 
         public double InterClusterMeanDistance { get; private set; }
+        
+        // TODO: silhouette mean
 
         #endregion
 

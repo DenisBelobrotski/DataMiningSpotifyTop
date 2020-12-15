@@ -158,14 +158,22 @@ namespace DataMiningSpotifyTop.Source.Util
 
             for (int i = 0; i < drawer.IntraClusterPlots.Count; i++)
             {
-                string fileName = $"(model_analysis)(ord_{i})(date_{date}).png";
-                string filePath = $"{AnalysisDirectoryPath}/{fileName}";
-                drawer.IntraClusterPlots[i].SaveFig(filePath);
+                string intraClusterPlotName = $"(model_analysis)(ord_{i})(date_{date}).png";
+                SavePlot(drawer.IntraClusterPlots[i], intraClusterPlotName);
             }
             
-            // TODO
-            // drawer.IntraClusterCommonPlot.SaveFig();
-            // drawer.InterClusterPlot.SaveFig();
+            string intraClusterMeanPlotName = $"(intra_cluster_mean)(date_{date}).png";
+            SavePlot(drawer.IntraClusterCommonPlot, intraClusterMeanPlotName);
+            
+            string interClusterMeanPlotName = $"(inter_cluster_mean)(date_{date}).png";
+            SavePlot(drawer.InterClusterPlot, interClusterMeanPlotName);
+        }
+
+
+        static void SavePlot(Plot plot, string fileName)
+        {
+            string filePath = $"{AnalysisDirectoryPath}/{fileName}";
+            plot.SaveFig(filePath);
         }
     }
 }
