@@ -21,8 +21,8 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         public double IntraClusterMeanDistance { get; private set; }
 
         public double InterClusterMeanDistance { get; private set; }
-        
-        // TODO: silhouette mean
+
+        public double SilhouetteCoefMean { get; private set; }
 
         #endregion
 
@@ -46,6 +46,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             AnalyzeIntraClusterDistance();
             SortAnalyzedSongs();
             AnalyzeInterClusterDistance();
+            SilhouetteCoefMean = AnalyzeSilhouetteCoef(AnalyzedSongs, Model);
         }
 
 
@@ -142,6 +143,51 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             }
 
             InterClusterMeanDistance /= clustersCount;
+        }
+
+
+        double AnalyzeSilhouetteCoef(List<AnalyzedSong> analyzedSongs, BaseKMeans model)
+        {
+            double silhouetteCoefMean = 0.0;
+            
+            foreach (AnalyzedSong analyzedSong in AnalyzedSongs)
+            {
+                int nearestClusterIndex = model.GetNearestClusterIndex(analyzedSong.AssociatedSong);
+                int secondNearestClusterIndex = model.GetSecondNearestClusterIndex(analyzedSong.AssociatedSong);
+
+                List<Song> nearestCluster = model.Clusters[nearestClusterIndex];
+                List<Song> secondNearestCluster = model.Clusters[secondNearestClusterIndex];
+
+                double nearestClusterMeanDistance = 0.0;
+                double secondNearestClusterMeanDistance = 0.0;
+
+                foreach (Song song in nearestCluster)
+                {
+                    double distance = model.DistanceFunc.GetDistance(song, analyzedSong.AssociatedSong);
+                    nearestClusterMeanDistance += distance;
+                }
+                
+                foreach (Song song in secondNearestCluster)
+                {
+                    double distance = model.DistanceFunc.GetDistance(song, analyzedSong.AssociatedSong);
+                    secondNearestClusterMeanDistance += distance;
+                }
+
+                nearestClusterMeanDistance /= nearestCluster.Count;
+                secondNearestClusterMeanDistance /= secondNearestCluster.Count;
+
+                double silhouetteCoef =
+                    (secondNearestClusterMeanDistance - nearestClusterMeanDistance) /
+                    Math.Max(nearestClusterMeanDistance, secondNearestClusterMeanDistance);
+
+                analyzedSong.SilhouetteCoef = silhouetteCoef;
+
+                silhouetteCoefMean += silhouetteCoef;
+            }
+
+            silhouetteCoefMean /= analyzedSongs.Count;
+
+            return silhouetteCoefMean;
         }
 
         #endregion

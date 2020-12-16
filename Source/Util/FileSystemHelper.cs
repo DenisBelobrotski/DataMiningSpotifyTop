@@ -158,7 +158,7 @@ namespace DataMiningSpotifyTop.Source.Util
 
             for (int i = 0; i < drawer.IntraClusterPlots.Count; i++)
             {
-                string intraClusterPlotName = $"(model_analysis)(ord_{i})(date_{date}).png";
+                string intraClusterPlotName = $"(model_intra_cluster_dist)(ord_{i})(date_{date}).png";
                 SavePlot(drawer.IntraClusterPlots[i], intraClusterPlotName);
             }
             

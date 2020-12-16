@@ -51,7 +51,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
         public Prediction PredictSuccess(Song song)
         {
-            int clusterIndex = Clusterizer.GetAssociatedClusterIndex(song);
+            int clusterIndex = Clusterizer.GetNearestClusterIndex(song);
             Song clusterCentroid = Clusterizer.Centroids[clusterIndex];
             double portion = Probabilities[clusterIndex];
             List<double> portions = new List<double>(Probabilities);

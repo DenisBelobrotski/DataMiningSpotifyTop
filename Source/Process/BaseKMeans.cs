@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using DataMiningSpotifyTop.Source.Common;
 
@@ -37,9 +38,15 @@ namespace DataMiningSpotifyTop.Source.Process
 
         #region Methods
 
-        public int GetAssociatedClusterIndex(Song song)
+        public int GetNearestClusterIndex(Song song)
         {
             return GetNearestCentroidIndex(song, Centroids, DistanceFunc);
+        }
+        
+        
+        public int GetSecondNearestClusterIndex(Song song)
+        {
+            return GetSecondNearestCentroidIndex(song, Centroids, DistanceFunc);
         }
 
 
@@ -96,6 +103,39 @@ namespace DataMiningSpotifyTop.Source.Process
             }
 
             return nearestCentroidIndex;
+        }
+        
+        
+        protected int GetSecondNearestCentroidIndex(Song song, List<Song> centroids, IDistanceFunc distanceFunc)
+        {
+            int nearestCentroidIndex = GetNearestCentroidIndex(song, centroids, distanceFunc);
+            int secondNearestCentroidIndex = int.MinValue;
+
+            for (int clusterIndex = 0; clusterIndex < centroids.Count; clusterIndex++)
+            {
+                if (clusterIndex != nearestCentroidIndex)
+                {
+                    secondNearestCentroidIndex = clusterIndex;
+                    break;
+                }
+            }
+            
+            Song centroid = centroids[secondNearestCentroidIndex];
+            double secondMinDistance = distanceFunc.GetDistance(centroid, song);
+
+            for (int clusterIndex = 1; clusterIndex < centroids.Count; clusterIndex++)
+            {
+                centroid = centroids[clusterIndex];
+                double distance = distanceFunc.GetDistance(centroid, song);
+
+                if (distance < secondMinDistance && clusterIndex != nearestCentroidIndex)
+                {
+                    secondMinDistance = distance;
+                    secondNearestCentroidIndex = clusterIndex;
+                }
+            }
+
+            return secondNearestCentroidIndex;
         }
 
         #endregion

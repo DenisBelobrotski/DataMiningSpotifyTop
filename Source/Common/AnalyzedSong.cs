@@ -9,6 +9,8 @@ namespace DataMiningSpotifyTop.Source.Common
         public int ClusterIndex { get; set; }
 
         public double CentroidDistance { get; set; }
+        
+        public double SilhouetteCoef { get; set; }
 
         #endregion
     }

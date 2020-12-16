@@ -26,6 +26,10 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         public Plot IntraClusterCommonPlot { get; private set; }
 
         public Plot InterClusterPlot { get; private set; }
+        
+        public List<Plot> SilhouetteCoefPlots { get; private set; }
+        
+        public Plot SilhouetteCoefMeanPlot { get; private set; }
 
         #endregion
 
