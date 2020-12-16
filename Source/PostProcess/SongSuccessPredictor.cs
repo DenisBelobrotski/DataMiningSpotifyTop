@@ -65,13 +65,14 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             return new Prediction
             {
                 ClusterIndex = clusterIndex,
-                ClusterCentroid = clusterCentroid,
                 ClusterPortion = portion,
                 ClusterPortions = portions,
                 CentroidDistance = distance,
                 CentroidDistances = distances,
                 ClusterSizes = sizes,
                 ClusterSize = clusterSize,
+                ClusterCentroid = clusterCentroid,
+                AssociatedSong = song,
             };
         }
 

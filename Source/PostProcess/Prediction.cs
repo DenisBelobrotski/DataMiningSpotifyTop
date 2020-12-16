@@ -8,6 +8,12 @@ namespace DataMiningSpotifyTop.Source.PostProcess
     {
         #region Properties
 
+        public string SongId => AssociatedSong.Id;
+
+        public string Artist => AssociatedSong.Artist;
+
+        public string Title => AssociatedSong.Title;
+
         public int ClusterIndex { get; set; }
 
         public int ClusterSize { get; set; }
@@ -24,6 +30,9 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
         [JsonIgnore]
         public Song ClusterCentroid { get; set; }
+        
+        [JsonIgnore]
+        public Song AssociatedSong { get; set; }
 
         #endregion
 
