@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DataMiningSpotifyTop.Source.Common;
 using DataMiningSpotifyTop.Source.PostProcess;
 using DataMiningSpotifyTop.Source.Process;
 using Newtonsoft.Json;
@@ -14,6 +15,7 @@ namespace DataMiningSpotifyTop.Source.Util
         const string PredictionsDirectoryPath = @"Predictions";
         const string ModelsDirectoryPath = @"Models";
         const string AnalysisDirectoryPath = @"Analysis";
+        const string ConfigDirectoryPath = @"Config";
 
 
         static string CurrentDate => GetFormattedDate(DateTime.Now);
@@ -183,6 +185,41 @@ namespace DataMiningSpotifyTop.Source.Util
         {
             string filePath = $"{AnalysisDirectoryPath}/{fileName}";
             plot.SaveFig(filePath);
+        }
+
+
+        public static AppConfig GetAppConfig()
+        {
+            if (!Directory.Exists(ConfigDirectoryPath))
+            {
+                Directory.CreateDirectory(ConfigDirectoryPath);
+            }
+
+            const string fileName = "app_config.json";
+            string filePath = $"{ConfigDirectoryPath}/{fileName}";
+
+            if (!File.Exists(filePath))
+            {
+                AppConfig defaultAppConfig = new AppConfig
+                {
+                    ExperimentConfigs = new List<ExperimentConfig>
+                    {
+                        new ExperimentConfig
+                        {
+                            ClustersCount = 3,
+                            ModelsCount = 1,
+                        },
+                    },
+                };
+
+                string serializedConfig = JsonConvert.SerializeObject(defaultAppConfig, Formatting.Indented);
+                File.WriteAllText(filePath, serializedConfig);
+            }
+
+            string deserializedConfig = File.ReadAllText(filePath);
+            AppConfig appConfig = JsonConvert.DeserializeObject<AppConfig>(deserializedConfig);
+
+            return appConfig;
         }
     }
 }

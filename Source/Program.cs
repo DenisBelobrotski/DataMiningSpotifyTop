@@ -11,23 +11,28 @@ namespace DataMiningSpotifyTop.Source
 {
     class Program
     {
+        // TODO: read from github or command line
         const string ResourcesRoot = @"../../Resources";
-        const int ExperimentsCount = 1;
-        const int ClustersCount = 3;
 
 
-        // TODO: steps: 1. parse data 1. create models, 2. save models, 3. read model, 4. analyze, 5. predict
         public static void Main(string[] args)
         {
+            AppConfig appConfig = FileSystemHelper.GetAppConfig();
             DateTime runDate = GetRunDate();
 
             List<Song> songs = GetPreparedTrainingData();
 
-            // TODO: experiments config
-            for (int i = 0; i < ExperimentsCount; i++)
+            int experimentIndex = 0;
+
+            foreach (ExperimentConfig config in appConfig.ExperimentConfigs)
             {
-                DynamicKMeans trainedKMeans = TrainModel(songs, ClustersCount);
-                FileSystemHelper.SaveKMeansModel(trainedKMeans.Model, runDate, i);
+                for (int i = 0; i < config.ModelsCount; i++)
+                {
+                    DynamicKMeans trainedKMeans = TrainModel(songs, config.ClustersCount);
+                    FileSystemHelper.SaveKMeansModel(trainedKMeans.Model, runDate, experimentIndex);
+
+                    experimentIndex += 1;
+                }
             }
 
             List<StaticKMeans> models = ReadAllModels(songs);
@@ -107,7 +112,7 @@ namespace DataMiningSpotifyTop.Source
             List<StaticKMeans> datas = models.Select(model => new StaticKMeans(songs, model)).ToList();
             datas.ForEach(data => data.ReadModel());
 
-            ConsoleHelper.ShowClusters(datas.Last());
+            // ConsoleHelper.ShowClusters(datas.Last());
 
             return datas;
         }
