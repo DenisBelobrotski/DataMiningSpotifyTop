@@ -162,11 +162,20 @@ namespace DataMiningSpotifyTop.Source.Util
                 SavePlot(drawer.IntraClusterPlots[i], intraClusterPlotName);
             }
             
+            for (int i = 0; i < drawer.IntraClusterPlots.Count; i++)
+            {
+                string silhouetteCoefPlotName = $"(model_silhouette)(ord_{i})(date_{date}).png";
+                SavePlot(drawer.SilhouetteCoefPlots[i], silhouetteCoefPlotName);
+            }
+            
             string intraClusterMeanPlotName = $"(intra_cluster_mean)(date_{date}).png";
             SavePlot(drawer.IntraClusterCommonPlot, intraClusterMeanPlotName);
             
             string interClusterMeanPlotName = $"(inter_cluster_mean)(date_{date}).png";
             SavePlot(drawer.InterClusterPlot, interClusterMeanPlotName);
+            
+            string silhouetteMeanPlotName = $"(silhouette_mean)(date_{date}).png";
+            SavePlot(drawer.SilhouetteCoefMeanPlot, silhouetteMeanPlotName);
         }
 
 

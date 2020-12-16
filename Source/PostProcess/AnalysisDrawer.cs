@@ -12,6 +12,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         static readonly Color IntraClusterDistanceColor = Color.DarkGoldenrod;
         static readonly Color VerticalDividerColor = Color.Red;
         static readonly Color IntraClustersMeanDistanceColor = Color.Magenta;
+        static readonly Color AxisColor = Color.Green;
 
         #endregion
 
@@ -41,6 +42,7 @@ namespace DataMiningSpotifyTop.Source.PostProcess
         {
             Analyzers = analyzers;
             IntraClusterPlots = new List<Plot>(analyzers.Capacity);
+            SilhouetteCoefPlots = new List<Plot>(analyzers.Capacity);
         }
 
         #endregion
@@ -57,6 +59,9 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             {
                 Plot intraClusterPlot = CreateIntraClusterPlot(modelAnalyzer);
                 IntraClusterPlots.Add(intraClusterPlot);
+                
+                Plot silhouettePlot = CreateSilhouettePlot(modelAnalyzer);
+                SilhouetteCoefPlots.Add(silhouettePlot);
             }
 
             List<ModelAnalyzer> sortedAnalyzers = new List<ModelAnalyzer>(Analyzers);
@@ -64,6 +69,8 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
             IntraClusterCommonPlot = CreateIntraClusterCommonPlot(sortedAnalyzers);
             InterClusterPlot = CreateInterClusterPlot(sortedAnalyzers);
+
+            SilhouetteCoefMeanPlot = CreateSilhouetteMeanPlot(Analyzers);
         }
 
 
@@ -164,6 +171,74 @@ namespace DataMiningSpotifyTop.Source.PostProcess
             interClusterPlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
 
             return interClusterPlot;
+        }
+
+
+        Plot CreateSilhouettePlot(ModelAnalyzer analyzer)
+        {
+            Plot silhouettePlot = new Plot();
+
+            int pointsCount = analyzer.AnalyzedSongs.Count;
+            double[] xValues = new double[pointsCount];
+            double[] yValues = new double[pointsCount];
+
+            int currentClusterIndex = analyzer.AnalyzedSongs[0].ClusterIndex;
+
+            for (int i = 0; i < pointsCount; i++)
+            {
+                AnalyzedSong point = analyzer.AnalyzedSongs[i];
+
+                xValues[i] = i;
+                yValues[i] = point.SilhouetteCoef;
+
+                if (currentClusterIndex != point.ClusterIndex)
+                {
+                    double value = (i + (i - 1)) / 2.0;
+                    string label = $"cluster {currentClusterIndex}";
+                    silhouettePlot.PlotVLine(value, VerticalDividerColor, label: label);
+                }
+
+                currentClusterIndex = point.ClusterIndex;
+            }
+
+            silhouettePlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
+            silhouettePlot.PlotHLine(analyzer.SilhouetteCoefMean, IntraClustersMeanDistanceColor);
+            silhouettePlot.PlotHLine(0.0, AxisColor);
+
+            return silhouettePlot;
+        }
+
+
+        Plot CreateSilhouetteMeanPlot(List<ModelAnalyzer> analyzers)
+        {
+            Plot silhouetteMeanPlot = new Plot();
+
+            int pointsCount = analyzers.Count;
+            double[] xValues = new double[pointsCount];
+            double[] yValues = new double[pointsCount];
+
+            int currentClustersCount = analyzers[0].ClustersCount;
+
+            for (int i = 0; i < pointsCount; i++)
+            {
+                ModelAnalyzer analyzer = analyzers[i];
+
+                xValues[i] = i;
+                yValues[i] = analyzer.SilhouetteCoefMean;
+
+                if (currentClustersCount != analyzer.ClustersCount)
+                {
+                    double value = (i + (i - 1)) / 2.0;
+                    string label = $"clusters count {currentClustersCount}";
+                    silhouetteMeanPlot.PlotVLine(value, VerticalDividerColor, label: label);
+                }
+
+                currentClustersCount = analyzer.ClustersCount;
+            }
+            
+            silhouetteMeanPlot.PlotScatter(xValues, yValues, IntraClusterDistanceColor);
+
+            return silhouetteMeanPlot;
         }
 
         #endregion
