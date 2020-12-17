@@ -131,7 +131,7 @@ namespace DataMiningSpotifyTop.Source.Util
                     KMeansModel model = ReadKMeansModel(path);
                     models.Add(model);
                 }
-                catch (JsonReaderException exception)
+                catch (JsonReaderException)
                 {
                     Console.WriteLine($"An error occured while reading json at path {path}");
                 }

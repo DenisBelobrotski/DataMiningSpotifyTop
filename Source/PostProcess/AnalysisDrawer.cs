@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using DataMiningSpotifyTop.Source.Common;
@@ -110,6 +111,11 @@ namespace DataMiningSpotifyTop.Source.PostProcess
 
         Plot CreateIntraClusterCommonPlot(List<ModelAnalyzer> analyzers)
         {
+            if (analyzers.Count < 1)
+            {
+                throw new ArgumentException();
+            }
+            
             Plot intraClusterCommonPlot = new Plot();
 
             int pointsCount = analyzers.Count;
